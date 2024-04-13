@@ -1,5 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://drqe4sjady5hu"]
+[gd_scene load_steps=5 format=3 uid="uid://drqe4sjady5hu"]
 
 [ext_resource type="PackedScene" uid="uid://rlx0fyvn35pw" path="res://meshes/tree.glb" id="1_4wdju"]
+[ext_resource type="Texture2D" uid="uid://b7njepvvaqpqa" path="res://textures/foliage/bark.png" id="2_hko8l"]
+[ext_resource type="Material" uid="uid://c5jkkr0u5krre" path="res://materials/leafs.material" id="2_llh5p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgegt"]
+albedo_color = Color(0.529412, 0.439216, 0.317647, 1)
+albedo_texture = ExtResource("2_hko8l")
+uv1_scale = Vector3(2.495, 2.495, 2.495)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2
 
 [node name="tree" instance=ExtResource("1_4wdju")]
+
+[node name="Trunk" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lgegt")
+
+[node name="Leafs" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_llh5p")
+
+[node name="Leafs2" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_llh5p")

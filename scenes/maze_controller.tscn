@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwqej3mny4gc8"]
+
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_7oeky"]
+[ext_resource type="Script" path="res://scripts/maze_controller.gd" id="1_cmffc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1ytfh"]
+radius = 0.75
+
+[sub_resource type="BoxMesh" id="BoxMesh_wik02"]
+
+[node name="MazeController" type="Node3D"]
+script = ExtResource("1_cmffc")
+
+[node name="Interactable" type="Area3D" parent="."]
+script = ExtResource("1_7oeky")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+shape = SubResource("SphereShape3D_1ytfh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_wik02")
+
+[connection signal="hovered" from="Interactable" to="." method="_on_interactable_hovered"]
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

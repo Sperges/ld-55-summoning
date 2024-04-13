@@ -1,16 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgjila5r5knku"]
+[gd_scene load_steps=14 format=3 uid="uid://cgjila5r5knku"]
 
 [ext_resource type="PackedScene" uid="uid://do4dyexw3hqmi" path="res://scenes/player.tscn" id="1_yflth"]
-[ext_resource type="PackedScene" uid="uid://b1bokex17ml84" path="res://scenes/door.tscn" id="3_u40yb"]
 [ext_resource type="PackedScene" uid="uid://b8teq4snnibp4" path="res://scenes/goat.tscn" id="4_io5mu"]
 [ext_resource type="PackedScene" uid="uid://bpnwrg5j5shs" path="res://scenes/cinematic_stack.tscn" id="5_tjlgc"]
 [ext_resource type="PackedScene" uid="uid://bthljcn8e4fbg" path="res://scenes/cinematic_trigger.tscn" id="6_nxrup"]
 [ext_resource type="PackedScene" uid="uid://b5xfcnht6qhk" path="res://scenes/map/entrance.tscn" id="7_65471"]
+[ext_resource type="PackedScene" uid="uid://ufyeiehu7fvo" path="res://scenes/map/maze.tscn" id="7_m23dd"]
+[ext_resource type="PackedScene" uid="uid://bwqej3mny4gc8" path="res://scenes/maze_controller.tscn" id="8_eg20c"]
+[ext_resource type="PackedScene" uid="uid://0sfddmw0ym02" path="res://scenes/map/entrance_gate.tscn" id="9_8pc45"]
 
 [sub_resource type="Environment" id="Environment_w6naq"]
 background_mode = 1
 ambient_light_source = 2
-ambient_light_color = Color(0.129412, 0.129412, 0.129412, 1)
+ambient_light_color = Color(0.490196, 0.490196, 0.490196, 1)
 tonemap_mode = 3
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ffvf1"]
@@ -80,9 +82,7 @@ _data = {
 
 [node name="Player" parent="." instance=ExtResource("1_yflth")]
 transform = Transform3D(-0.298658, 0, 0.95436, 0, 1, 0, -0.95436, 0, -0.298658, 5, 0, -7)
-
-[node name="Door" parent="." instance=ExtResource("3_u40yb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 14)
+speed = 10.0
 
 [node name="Goat" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_io5mu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0163283, 0, 6.76479)
@@ -115,6 +115,27 @@ libraries = {
 }
 
 [node name="CinematicTrigger" parent="." instance=ExtResource("6_nxrup")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 14.356)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3847, 1, 16.1158)
 
 [node name="Entrance" parent="." instance=ExtResource("7_65471")]
+
+[node name="Maze" parent="." instance=ExtResource("7_m23dd")]
+transform = Transform3D(-1, 0, -8.74228e-08, -4.61853e-14, 1, 2.98023e-07, 8.74227e-08, 2.98023e-07, -1, 1.82811, 0, 70.0679)
+
+[node name="MazeController" parent="." instance=ExtResource("8_eg20c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.6011, 1.5149, 70.5796)
+
+[node name="MazeController2" parent="." instance=ExtResource("8_eg20c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.1828, 1.36595, 69.7468)
+chamber = "chamber_02"
+
+[node name="MazeController3" parent="." instance=ExtResource("8_eg20c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39047, 1.36595, 117.085)
+chamber = "blood"
+
+[node name="MazeController4" parent="." instance=ExtResource("8_eg20c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.94578, 1.36595, 116.934)
+chamber = "final_spin"
+
+[node name="EntranceGate" parent="." instance=ExtResource("9_8pc45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.496855, 19.7841)
