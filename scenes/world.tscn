@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgjila5r5knku"]
+
+[ext_resource type="PackedScene" uid="uid://do4dyexw3hqmi" path="res://scenes/player.tscn" id="1_yflth"]
+[ext_resource type="PackedScene" uid="uid://1sca4mhdxtom" path="res://scenes/test_interact.tscn" id="2_eeaca"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_i7qgk"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gwgrh"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="Environment" id="Environment_dsta4"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_gmc4i"]
+
+[node name="World" type="Node3D"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_i7qgk")
+
+[node name="Player" parent="." instance=ExtResource("1_yflth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2099, 5, 0)
+mesh = SubResource("BoxMesh_gwgrh")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.209854, 5, 13)
+mesh = SubResource("BoxMesh_gwgrh")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.209854, 5, -11)
+mesh = SubResource("BoxMesh_gwgrh")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7901, 5, 2)
+mesh = SubResource("BoxMesh_gwgrh")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dsta4")
+camera_attributes = SubResource("CameraAttributesPractical_gmc4i")
+
+[node name="TestInteract" parent="." instance=ExtResource("2_eeaca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22245, 1.38306, -1.02435)

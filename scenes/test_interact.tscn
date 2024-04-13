@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://1sca4mhdxtom"]
+
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_uusrl"]
+[ext_resource type="Script" path="res://scripts/test_interact.gd" id="1_yld2h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0tuj"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ycfkc"]
+material = SubResource("StandardMaterial3D_n0tuj")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1qcqu"]
+
+[node name="TestInteract" type="Node3D"]
+script = ExtResource("1_yld2h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ycfkc")
+
+[node name="Interactable" type="Area3D" parent="."]
+script = ExtResource("1_uusrl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+shape = SubResource("BoxShape3D_1qcqu")
+
+[connection signal="hovered" from="Interactable" to="." method="_on_interactable_hovered"]
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
