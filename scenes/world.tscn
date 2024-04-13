@@ -1,17 +1,90 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgjila5r5knku"]
+[gd_scene load_steps=15 format=3 uid="uid://cgjila5r5knku"]
 
+[ext_resource type="Texture2D" uid="uid://dkepfkg1u6egs" path="res://textures/grass.png" id="1_oe6vb"]
 [ext_resource type="PackedScene" uid="uid://do4dyexw3hqmi" path="res://scenes/player.tscn" id="1_yflth"]
 [ext_resource type="PackedScene" uid="uid://1sca4mhdxtom" path="res://scenes/test_interact.tscn" id="2_eeaca"]
+[ext_resource type="PackedScene" uid="uid://b1bokex17ml84" path="res://scenes/door.tscn" id="3_u40yb"]
+[ext_resource type="PackedScene" uid="uid://b8teq4snnibp4" path="res://scenes/goat.tscn" id="4_io5mu"]
+[ext_resource type="PackedScene" uid="uid://bpnwrg5j5shs" path="res://scenes/cinematic_stack.tscn" id="5_tjlgc"]
+[ext_resource type="PackedScene" uid="uid://bthljcn8e4fbg" path="res://scenes/cinematic_trigger.tscn" id="6_nxrup"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5xu4"]
+albedo_texture = ExtResource("1_oe6vb")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_i7qgk"]
+material = SubResource("StandardMaterial3D_j5xu4")
 size = Vector3(30, 1, 30)
 
-[sub_resource type="BoxMesh" id="BoxMesh_gwgrh"]
-size = Vector3(10, 10, 10)
+[sub_resource type="Environment" id="Environment_w6naq"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 3
 
-[sub_resource type="Environment" id="Environment_dsta4"]
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ffvf1"]
 
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_gmc4i"]
+[sub_resource type="Animation" id="Animation_eiotk"]
+resource_name = "cinematic_01"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 14, 9), Vector3(0, 14, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WorldEnvironment:environment:background_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.415686, 0.415686, 0.541176, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o0wgi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 14, 9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WorldEnvironment:environment:background_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u1hq0"]
+_data = {
+"RESET": SubResource("Animation_o0wgi"),
+"cinematic_01": SubResource("Animation_eiotk")
+}
 
 [node name="World" type="Node3D"]
 
@@ -23,25 +96,37 @@ mesh = SubResource("BoxMesh_i7qgk")
 [node name="Player" parent="." instance=ExtResource("1_yflth")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
 
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2099, 5, 0)
-mesh = SubResource("BoxMesh_gwgrh")
-
-[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.209854, 5, 13)
-mesh = SubResource("BoxMesh_gwgrh")
-
-[node name="CSGMesh3D4" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.209854, 5, -11)
-mesh = SubResource("BoxMesh_gwgrh")
-
-[node name="CSGMesh3D5" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7901, 5, 2)
-mesh = SubResource("BoxMesh_gwgrh")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_dsta4")
-camera_attributes = SubResource("CameraAttributesPractical_gmc4i")
-
 [node name="TestInteract" parent="." instance=ExtResource("2_eeaca")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22245, 1.38306, -1.02435)
+
+[node name="Door" parent="." instance=ExtResource("3_u40yb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -4)
+
+[node name="Goat" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_io5mu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.59809, 0, 6.76479)
+player = NodePath("../Player")
+min_player_distance = 4.0
+
+[node name="CinematicStack" parent="." node_paths=PackedStringArray("player", "animation_player", "camera") instance=ExtResource("5_tjlgc")]
+player = NodePath("../Player")
+animation_player = NodePath("AnimationPlayer")
+camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="CinematicStack"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 14, 9)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CinematicStack"]
+transform = Transform3D(0.866025, 0.353553, -0.353553, 0, 0.707107, 0.707107, 0.5, -0.612372, 0.612372, 0, 5, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CinematicStack"]
+environment = SubResource("Environment_w6naq")
+camera_attributes = SubResource("CameraAttributesPractical_ffvf1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CinematicStack"]
+libraries = {
+"": SubResource("AnimationLibrary_u1hq0")
+}
+
+[node name="CinematicTrigger" parent="." instance=ExtResource("6_nxrup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -4)

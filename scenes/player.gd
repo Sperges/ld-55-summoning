@@ -1,9 +1,10 @@
 extends CharacterBody3D
-
+class_name Player
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+@export var paused := false
 @export var camera_turn_speed = 2.0
 @export var mouse_sensitivity = 0.002
 @export var camera: Camera3D
@@ -11,7 +12,6 @@ const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -26,7 +26,7 @@ func _unhandled_key_input(event):
 
 func _unhandled_input(event):
 	event =  event as InputEventMouseMotion
-	if event:
+	if event and not paused:
 		var direction = -event.relative * mouse_sensitivity
 		rotation.y = lerp(rotation.y, rotation.y + direction.x, camera_turn_speed)
 		camera.rotation.x = lerp(camera.rotation.x, camera.rotation.x + direction.y, camera_turn_speed)
@@ -34,6 +34,9 @@ func _unhandled_input(event):
 
 
 func _physics_process(delta):
+	if paused:
+		return
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -63,4 +66,4 @@ func _update_ray() -> void:
 	if collider and collider is Interactable:
 		collider.hover()
 	else:
-		GameEvents.interact_cue_updated.emit(null)
+		GameEvents.interact_cue_cleared.emit()

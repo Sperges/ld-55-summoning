@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpnwrg5j5shs"]
+
+[ext_resource type="Script" path="res://scripts/cinematic_stack.gd" id="1_nql4m"]
+
+[node name="CinematicStack" type="Node3D"]
+script = ExtResource("1_nql4m")

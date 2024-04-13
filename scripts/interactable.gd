@@ -11,3 +11,4 @@ func hover() -> void:
 
 func interact() -> void:
 	interacted.emit()
+	GameEvents.interact_cue_cleared.emit()

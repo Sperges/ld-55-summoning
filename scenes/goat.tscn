@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8teq4snnibp4"]
+
+[ext_resource type="Script" path="res://scripts/goat.gd" id="1_7lb00"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kwpb"]
+albedo_color = Color(0.137255, 0.113725, 0.0666667, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ujgai"]
+material = SubResource("StandardMaterial3D_3kwpb")
+size = Vector3(0.5, 0.75, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mdphv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_v15g2"]
+material = SubResource("StandardMaterial3D_3kwpb")
+size = Vector3(0.6, 0.4, 0.5)
+
+[node name="Goat" type="CharacterBody3D"]
+script = ExtResource("1_7lb00")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_ujgai")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_mdphv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.5)
+mesh = SubResource("BoxMesh_v15g2")

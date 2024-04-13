@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bthljcn8e4fbg"]
+
+[ext_resource type="Script" path="res://scripts/cinematic_trigger.gd" id="1_om5ms"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qq5et"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xg5mk"]
+transparency = 1
+albedo_color = Color(0.635294, 1, 1, 0.380392)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w0ymj"]
+material = SubResource("StandardMaterial3D_xg5mk")
+
+[node name="CinematicTrigger" type="Node3D"]
+script = ExtResource("1_om5ms")
+animation_name = "cinematic_01"
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_qq5et")
+
+[node name="Debug" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_w0ymj")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
