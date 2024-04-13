@@ -1,14 +1,64 @@
-[gd_scene load_steps=4 format=3 uid="uid://do4dyexw3hqmi"]
+[gd_scene load_steps=10 format=3 uid="uid://do4dyexw3hqmi"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_e1dnn"]
 [ext_resource type="Script" path="res://scripts/interact_label.gd" id="2_7an80"]
+[ext_resource type="AudioStream" uid="uid://bikysubncdpes" path="res://sound_effects/footstep1_grass.wav" id="3_th3q1"]
+[ext_resource type="AudioStream" uid="uid://dl780qaunaew3" path="res://sound_effects/footstep2_grass.wav" id="4_d3bna"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kfp0j"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "raycast")]
+[sub_resource type="Animation" id="Animation_qby5x"]
+resource_name = "flicker"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.2, 1.1, 0.9, 1.1]
+}
+
+[sub_resource type="Animation" id="Animation_opq3e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6t1go"]
+_data = {
+"RESET": SubResource("Animation_opq3e"),
+"flicker": SubResource("Animation_qby5x")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jsp6b"]
+random_pitch = 1.1
+random_volume_offset_db = 1.0
+streams_count = 2
+stream_0/stream = ExtResource("3_th3q1")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_d3bna")
+stream_1/weight = 1.0
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "raycast", "audio_player")]
 script = ExtResource("1_e1dnn")
 camera = NodePath("Camera3D")
 raycast = NodePath("Camera3D/RayCast3D")
+audio_player = NodePath("AudioStreamPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -42,3 +92,18 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 script = ExtResource("2_7an80")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(0.760784, 0.654902, 0.592157, 1)
+shadow_enabled = true
+omni_range = 7.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OmniLight3D"]
+libraries = {
+"": SubResource("AnimationLibrary_6t1go")
+}
+autoplay = "flicker"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_jsp6b")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsm0m7grf1o7h"]
+
+[ext_resource type="PackedScene" uid="uid://l4rlxtytfhfn" path="res://meshes/entrance_path.glb" id="1_qea5e"]
+[ext_resource type="Material" uid="uid://bxaxkbjde4qwd" path="res://materials/dirt.material" id="2_5pmnn"]
+
+[node name="entrance_path" instance=ExtResource("1_qea5e")]
+
+[node name="Plane_001" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_5pmnn")
