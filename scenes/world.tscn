@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cgjila5r5knku"]
+[gd_scene load_steps=24 format=3 uid="uid://cgjila5r5knku"]
 
 [ext_resource type="PackedScene" uid="uid://do4dyexw3hqmi" path="res://scenes/player.tscn" id="1_yflth"]
 [ext_resource type="PackedScene" uid="uid://b8teq4snnibp4" path="res://scenes/goat.tscn" id="4_io5mu"]
@@ -80,7 +80,15 @@ uv1_triplanar = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jb1j4"]
 material = SubResource("StandardMaterial3D_e4y6c")
-size = Vector2(500, 500)
+size = Vector2(300, 500)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ugmhk"]
+material = SubResource("StandardMaterial3D_e4y6c")
+size = Vector2(200, 200)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pmxwm"]
+material = SubResource("StandardMaterial3D_e4y6c")
+size = Vector2(200, 100)
 
 [node name="World" type="Node3D"]
 
@@ -161,5 +169,17 @@ transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 66.0638,
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2.28217, 0.364464, 192.068)
 
 [node name="GrassFloor" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.498582, 71)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105, -0.498582, 71)
 mesh = SubResource("PlaneMesh_jb1j4")
+
+[node name="GrassFloor2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -145, -0.498582, 213)
+mesh = SubResource("PlaneMesh_ugmhk")
+
+[node name="GrassFloor3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -145, -0.498582, -71)
+mesh = SubResource("PlaneMesh_ugmhk")
+
+[node name="GrassFloor4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195, -0.498582, 63)
+mesh = SubResource("PlaneMesh_pmxwm")
