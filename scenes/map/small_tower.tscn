@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvshg73tgoptl"]
+
+[ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="1_krlr2"]
+[ext_resource type="Texture2D" uid="uid://r05wksrf1seg" path="res://textures/wood/wood.png" id="2_qddri"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tdy4e"]
+top_radius = 4.0
+bottom_radius = 4.0
+height = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_befni"]
+albedo_color = Color(0.321569, 0.219608, 0.184314, 1)
+albedo_texture = ExtResource("2_qddri")
+uv1_scale = Vector3(-0.155, 1, 1)
+uv1_triplanar = true
+texture_filter = 2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tn4od"]
+material = SubResource("StandardMaterial3D_befni")
+bottom_radius = 6.0
+height = 6.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6m0de"]
+top_radius = 0.75
+bottom_radius = 0.75
+height = 8.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r2rbj"]
+albedo_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y56tu"]
+size = Vector3(1.5, 8.1, 1.5)
+
+[node name="Tower" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+mesh = SubResource("CylinderMesh_tdy4e")
+surface_material_override/0 = ExtResource("1_krlr2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23, 0)
+mesh = SubResource("CylinderMesh_tn4od")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 18, 0)
+mesh = SubResource("CylinderMesh_6m0de")
+surface_material_override/0 = SubResource("StandardMaterial3D_r2rbj")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 17.25, 0)
+mesh = SubResource("BoxMesh_y56tu")
+surface_material_override/0 = SubResource("StandardMaterial3D_r2rbj")

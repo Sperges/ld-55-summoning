@@ -1,25 +1,57 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwqej3mny4gc8"]
+[gd_scene load_steps=9 format=3 uid="uid://bwqej3mny4gc8"]
 
 [ext_resource type="Script" path="res://scripts/interactable.gd" id="1_7oeky"]
 [ext_resource type="Script" path="res://scripts/maze_controller.gd" id="1_cmffc"]
+[ext_resource type="Material" uid="uid://brbuc1j3buj3v" path="res://materials/maze_controller.material" id="3_ieexa"]
+[ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="5_hyeox"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1ytfh"]
-radius = 0.75
+radius = 1.5
 
-[sub_resource type="BoxMesh" id="BoxMesh_wik02"]
+[sub_resource type="TorusMesh" id="TorusMesh_6vmem"]
+material = ExtResource("3_ieexa")
+inner_radius = 0.25
+outer_radius = 0.5
+
+[sub_resource type="TorusMesh" id="TorusMesh_si628"]
+material = ExtResource("3_ieexa")
+inner_radius = 1.0
+outer_radius = 0.75
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tsat7"]
+material = ExtResource("5_hyeox")
+bottom_radius = 0.75
+height = 0.5
 
 [node name="MazeController" type="Node3D"]
 script = ExtResource("1_cmffc")
 
 [node name="Interactable" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("1_7oeky")
+one_time = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("SphereShape3D_1ytfh")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_wik02")
+[node name="Inner" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("TorusMesh_6vmem")
+
+[node name="Outer" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("TorusMesh_si628")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+light_color = Color(0.462745, 0.584314, 0.6, 1)
+light_energy = 2.0
+omni_range = 8.0
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("CylinderMesh_tsat7")
 
 [connection signal="hovered" from="Interactable" to="." method="_on_interactable_hovered"]
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

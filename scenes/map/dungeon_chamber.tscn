@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://te4b3v7e8ino"]
+
+[ext_resource type="PackedScene" uid="uid://c5btglhdebtm" path="res://scenes/map/dungeon.tscn" id="1_j7pav"]
+[ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="2_xkh0d"]
+[ext_resource type="PackedScene" uid="uid://cl2nhqvqobj8q" path="res://scenes/broken_wall.tscn" id="3_jble7"]
+[ext_resource type="PackedScene" uid="uid://bpc6beoq4536" path="res://scenes/spectral_statue.tscn" id="4_lqrp8"]
+[ext_resource type="PackedScene" uid="uid://cml1qxsuf0ydj" path="res://scenes/board.tscn" id="5_w8ihx"]
+[ext_resource type="PackedScene" uid="uid://dd5fsoyf8dt0n" path="res://scenes/map/column.tscn" id="6_572wn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p3ko0"]
+size = Vector3(36.6913, 1.87964, 6.69373)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hwx6a"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_85od8"]
+size = Vector2(50, 40)
+
+[node name="DungeonChamber" type="Node3D"]
+
+[node name="dungeon" parent="." instance=ExtResource("1_j7pav")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.67897)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30658, -0.94519, -0.588928)
+shape = SubResource("BoxShape3D_p3ko0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(6.6854, 0, 0, 0, 2.30385, 0, 0, 0, 1, -4.25029, 0.820701, -27.1851)
+mesh = SubResource("BoxMesh_hwx6a")
+surface_material_override/0 = ExtResource("2_xkh0d")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(13.0854, 0, 0, 0, 12.0878, 0, 0, 0, 1, -0.336559, 7.97485, -27.1851)
+mesh = SubResource("BoxMesh_hwx6a")
+surface_material_override/0 = ExtResource("2_xkh0d")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(6.6854, 0, 0, 0, 2.30385, 0, 0, 0, 1, 4.41543, 0.808134, -27.1851)
+mesh = SubResource("BoxMesh_hwx6a")
+surface_material_override/0 = ExtResource("2_xkh0d")
+
+[node name="broken_wall" parent="." instance=ExtResource("3_jble7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0685518, 4.76837e-07, -27.1991)
+
+[node name="SpectralStatue" parent="." instance=ExtResource("4_lqrp8")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.14376, 0.00270462, 1.66067)
+
+[node name="SpectralStatue2" parent="." instance=ExtResource("4_lqrp8")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.80552, 0.00270462, 2.02044)
+
+[node name="SpectralStatue3" parent="." instance=ExtResource("4_lqrp8")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.98938, 0.00270462, -17.5812)
+
+[node name="SpectralStatue4" parent="." instance=ExtResource("4_lqrp8")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.00322, 0.00270462, -17.5009)
+
+[node name="Board" parent="." instance=ExtResource("5_w8ihx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.84647, 0.016762, -10.4263)
+
+[node name="column" parent="." instance=ExtResource("6_572wn")]
+transform = Transform3D(1, 0, 0, 0, 1.45397, 0, 0, 0, 1, -8.83744, 0, -12.4751)
+
+[node name="column2" parent="." instance=ExtResource("6_572wn")]
+transform = Transform3D(1, 0, 0, 0, 1.45397, 0, 0, 0, 1, 8.75516, 0, -12.4751)
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -45.8148, -5.12936, -13.6511)
+material_override = ExtResource("2_xkh0d")
+mesh = SubResource("QuadMesh_85od8")

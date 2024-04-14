@@ -1,0 +1,94 @@
+[gd_scene load_steps=12 format=3 uid="uid://cml1qxsuf0ydj"]
+
+[ext_resource type="Script" path="res://scripts/board.gd" id="1_ki2wo"]
+[ext_resource type="Texture2D" uid="uid://r05wksrf1seg" path="res://textures/wood/wood.png" id="1_sqxc7"]
+[ext_resource type="Texture2D" uid="uid://d1iv5b3fldu13" path="res://textures/wood/wood_n.png" id="2_1j0ef"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="3_lvos6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhqs8"]
+albedo_color = Color(0.529412, 0.419608, 0.321569, 1)
+albedo_texture = ExtResource("1_sqxc7")
+normal_enabled = true
+normal_texture = ExtResource("2_1j0ef")
+uv1_scale = Vector3(0.715, 0.35, 0)
+uv1_offset = Vector3(0, 0.58, 0)
+uv1_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_2pi0g"]
+material = SubResource("StandardMaterial3D_xhqs8")
+size = Vector3(1, 4, 0.1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_p1o83"]
+data = PackedVector3Array(-0.5, 2, 0.05, 0.5, 2, 0.05, -0.5, -2, 0.05, 0.5, 2, 0.05, 0.5, -2, 0.05, -0.5, -2, 0.05, 0.5, 2, -0.05, -0.5, 2, -0.05, 0.5, -2, -0.05, -0.5, 2, -0.05, -0.5, -2, -0.05, 0.5, -2, -0.05, 0.5, 2, 0.05, 0.5, 2, -0.05, 0.5, -2, 0.05, 0.5, 2, -0.05, 0.5, -2, -0.05, 0.5, -2, 0.05, -0.5, 2, -0.05, -0.5, 2, 0.05, -0.5, -2, -0.05, -0.5, 2, 0.05, -0.5, -2, 0.05, -0.5, -2, -0.05, 0.5, 2, 0.05, -0.5, 2, 0.05, 0.5, 2, -0.05, -0.5, 2, 0.05, -0.5, 2, -0.05, 0.5, 2, -0.05, -0.5, -2, 0.05, 0.5, -2, 0.05, -0.5, -2, -0.05, 0.5, -2, 0.05, 0.5, -2, -0.05, -0.5, -2, -0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yk3ve"]
+size = Vector3(1.05078, 4.01764, 1.21521)
+
+[sub_resource type="Animation" id="Animation_ijiys"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.191986, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ne8xw"]
+resource_name = "topple"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2, 2.2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.191986, 0, 0), Vector3(0.291438, 0, 0), Vector3(1.5708, 0, 0), Vector3(1.48353, 0, 0), Vector3(1.5708, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v36wx"]
+_data = {
+"RESET": SubResource("Animation_ijiys"),
+"topple": SubResource("Animation_ne8xw")
+}
+
+[node name="FallingBoard" type="Node3D"]
+
+[node name="Board" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.47244, 0.190809, 0, -0.286213, 0.981627, 0, 0, 0)
+script = ExtResource("1_ki2wo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("BoxMesh_2pi0g")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Board/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_p1o83")
+
+[node name="Interactable" type="Area3D" parent="Board"]
+script = ExtResource("3_lvos6")
+one_time = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0253906, 2.05814, -0.273743)
+shape = SubResource("BoxShape3D_yk3ve")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Board"]
+libraries = {
+"": SubResource("AnimationLibrary_v36wx")
+}
+
+[connection signal="hovered" from="Board/Interactable" to="Board" method="_on_interactable_hovered"]
+[connection signal="interacted" from="Board/Interactable" to="Board" method="_on_interactable_interacted"]

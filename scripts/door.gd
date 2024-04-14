@@ -8,7 +8,7 @@ var open = false
 
 func _on_interactable_hovered():
 	if not open:
-		GameEvents.interact_cue_updated.emit("open")
+		GameEvents.interact_cue_updated.emit("Open")
 
 
 func _on_interactable_interacted():

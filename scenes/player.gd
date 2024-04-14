@@ -1,18 +1,23 @@
 extends CharacterBody3D
 class_name Player
 
+const hand_scene := preload("res://scenes/hand.tscn")
 const JUMP_VELOCITY = 4.5
 
 @export var paused := false
+@export var summon_cooldown := 200
 @export var speed := 2.5
 @export var camera_turn_speed = 2.0
 @export var mouse_sensitivity = 0.002
 @export var camera: Camera3D
 @export var raycast: RayCast3D
 @export var audio_player: AudioStreamPlayer
+@export var collision_shape: CollisionShape3D
+@export var collision_ray: CollisionShape3D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var hand = null
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -23,6 +28,16 @@ func _unhandled_key_input(event):
 		var collider := raycast.get_collider()
 		if collider and collider is Interactable:
 			collider.interact()
+	if Input.is_action_just_pressed("summon_hand") and not hand:
+		hand = hand_scene.instantiate()
+		paused = true
+		hand.player = self
+		hand.camera.current = true
+		collision_shape.disabled = true
+		collision_ray.disabled = true
+		owner.add_child(hand)
+		hand.global_position = global_position
+		hand.global_rotation = global_rotation
 
 
 func _unhandled_input(event):
@@ -32,6 +47,12 @@ func _unhandled_input(event):
 		rotation.y = lerp(rotation.y, rotation.y + direction.x, camera_turn_speed)
 		camera.rotation.x = lerp(camera.rotation.x, camera.rotation.x + direction.y, camera_turn_speed)
 		camera.rotation_degrees.x  =clampf(camera.rotation_degrees.x, -89, 89)
+
+
+func unpause() -> void:
+	collision_shape.disabled = false
+	collision_ray.disabled = false
+	paused = false
 
 
 func _physics_process(delta):
@@ -51,7 +72,6 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 	else:

@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name Goat
 
-const bleat_times = [2, 3, 5, 8, 13, 21, 34, 55]
+const bleat_times = [8, 13, 21, 34, 55]
 
 @export var player: Player
 @export var min_player_distance: float = 2.0
@@ -20,6 +20,8 @@ func _physics_process(delta: float) -> void:
 	if not player:
 		return
 	
+	global_position.y = lerp(global_position.y, player.global_position.y, delta * 10)
+	
 	var player_distance := global_position.distance_to(player.global_position)
 	
 	if player_distance < activate_distance and not active:
@@ -35,6 +37,7 @@ func _physics_process(delta: float) -> void:
 
 func approach_player(delta: float) -> void:
 	global_position = lerp(global_position, player.global_position, delta * move_speed)
+	
 	look_at(player.global_position)
 
 
@@ -46,3 +49,11 @@ func _on_bleat_timeout() -> void:
 func _create_bleat_timer() -> void:
 	var time = bleat_times.pick_random()
 	get_tree().create_timer(time).timeout.connect(_on_bleat_timeout)
+
+
+func _on_interactable_hovered():
+	GameEvents.interact_cue_updated.emit("Pet")
+
+
+func _on_interactable_interacted():
+	audio_player.play()

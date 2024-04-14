@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd5fsoyf8dt0n"]
+
+[ext_resource type="PackedScene" uid="uid://d0pndb7wf68aw" path="res://meshes/column.glb" id="1_020yn"]
+[ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="2_x2tbp"]
+
+[node name="column" instance=ExtResource("1_020yn")]
+
+[node name="Cylinder" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_x2tbp")
+
+[node name="Cylinder_001" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_x2tbp")

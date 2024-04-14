@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://d2wooyb27jbhl"]
+
+[ext_resource type="PackedScene" uid="uid://c3pj2ty53oxr4" path="res://scenes/map/church.tscn" id="1_ud1ix"]
+[ext_resource type="PackedScene" uid="uid://dccw8cxdq28dd" path="res://scenes/damaged_wall.tscn" id="2_00oua"]
+[ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="3_bqv3a"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ve0ft"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ychjg"]
+material = ExtResource("3_bqv3a")
+size = Vector3(2.5, 2, 0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_l8qwd"]
+data = PackedVector3Array(-1.25, 1, 0.25, 1.25, 1, 0.25, -1.25, -1, 0.25, 1.25, 1, 0.25, 1.25, -1, 0.25, -1.25, -1, 0.25, 1.25, 1, -0.25, -1.25, 1, -0.25, 1.25, -1, -0.25, -1.25, 1, -0.25, -1.25, -1, -0.25, 1.25, -1, -0.25, 1.25, 1, 0.25, 1.25, 1, -0.25, 1.25, -1, 0.25, 1.25, 1, -0.25, 1.25, -1, -0.25, 1.25, -1, 0.25, -1.25, 1, -0.25, -1.25, 1, 0.25, -1.25, -1, -0.25, -1.25, 1, 0.25, -1.25, -1, 0.25, -1.25, -1, -0.25, 1.25, 1, 0.25, -1.25, 1, 0.25, 1.25, 1, -0.25, -1.25, 1, 0.25, -1.25, 1, -0.25, 1.25, 1, -0.25, -1.25, -1, 0.25, 1.25, -1, 0.25, -1.25, -1, -0.25, 1.25, -1, 0.25, 1.25, -1, -0.25, -1.25, -1, -0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vg7wa"]
+material = ExtResource("3_bqv3a")
+size = Vector3(5, 3.5, 0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kmh6q"]
+data = PackedVector3Array(-2.5, 1.75, 0.25, 2.5, 1.75, 0.25, -2.5, -1.75, 0.25, 2.5, 1.75, 0.25, 2.5, -1.75, 0.25, -2.5, -1.75, 0.25, 2.5, 1.75, -0.25, -2.5, 1.75, -0.25, 2.5, -1.75, -0.25, -2.5, 1.75, -0.25, -2.5, -1.75, -0.25, 2.5, -1.75, -0.25, 2.5, 1.75, 0.25, 2.5, 1.75, -0.25, 2.5, -1.75, 0.25, 2.5, 1.75, -0.25, 2.5, -1.75, -0.25, 2.5, -1.75, 0.25, -2.5, 1.75, -0.25, -2.5, 1.75, 0.25, -2.5, -1.75, -0.25, -2.5, 1.75, 0.25, -2.5, -1.75, 0.25, -2.5, -1.75, -0.25, 2.5, 1.75, 0.25, -2.5, 1.75, 0.25, 2.5, 1.75, -0.25, -2.5, 1.75, 0.25, -2.5, 1.75, -0.25, 2.5, 1.75, -0.25, -2.5, -1.75, 0.25, 2.5, -1.75, 0.25, -2.5, -1.75, -0.25, 2.5, -1.75, 0.25, 2.5, -1.75, -0.25, -2.5, -1.75, -0.25)
+
+[node name="ChurchChamber" type="Node3D"]
+
+[node name="church" parent="." instance=ExtResource("1_ud1ix")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
+mesh = SubResource("CapsuleMesh_ve0ft")
+
+[node name="DamagedWall" parent="." instance=ExtResource("2_00oua")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 5.98992, 0, -16.2571)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.24735, 1, -16)
+mesh = SubResource("BoxMesh_ychjg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_l8qwd")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24735, 3.74458, -16.1964)
+mesh = SubResource("BoxMesh_vg7wa")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_kmh6q")

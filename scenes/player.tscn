@@ -1,11 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://do4dyexw3hqmi"]
+[gd_scene load_steps=13 format=3 uid="uid://do4dyexw3hqmi"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_e1dnn"]
 [ext_resource type="Script" path="res://scripts/interact_label.gd" id="2_7an80"]
+[ext_resource type="FontFile" uid="uid://qqch4uh0hhuc" path="res://fonts/Kurland.woff2" id="2_878u7"]
 [ext_resource type="AudioStream" uid="uid://bikysubncdpes" path="res://sound_effects/footstep1_grass.wav" id="3_th3q1"]
 [ext_resource type="AudioStream" uid="uid://dl780qaunaew3" path="res://sound_effects/footstep2_grass.wav" id="4_d3bna"]
+[ext_resource type="Texture2D" uid="uid://bmadrkl03tuy3" path="res://textures/wizard.png" id="5_ky3de"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kfp0j"]
+radius = 0.375
+height = 1.5
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_x6lwj"]
+length = 0.5
 
 [sub_resource type="Animation" id="Animation_opq3e"]
 length = 0.001
@@ -54,15 +61,23 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("4_d3bna")
 stream_1/weight = 1.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "raycast", "audio_player")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "raycast", "audio_player", "collision_shape", "collision_ray")]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_e1dnn")
 camera = NodePath("Camera3D")
 raycast = NodePath("Camera3D/RayCast3D")
 audio_player = NodePath("AudioStreamPlayer")
+collision_shape = NodePath("CollisionShape3D")
+collision_ray = NodePath("CollisionShape3D2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 shape = SubResource("CapsuleShape3D_kfp0j")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, 0)
+shape = SubResource("SeparationRayShape3D_x6lwj")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -89,6 +104,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_878u7")
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 script = ExtResource("2_7an80")
@@ -107,3 +123,10 @@ autoplay = "flicker"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_jsp6b")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+offset = Vector2(0, 64)
+pixel_size = 0.016
+billboard = 2
+texture_filter = 2
+texture = ExtResource("5_ky3de")

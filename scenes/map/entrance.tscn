@@ -1,31 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5xfcnht6qhk"]
+[gd_scene load_steps=11 format=3 uid="uid://b5xfcnht6qhk"]
 
-[ext_resource type="Texture2D" uid="uid://5oxl6cphnjt3" path="res://textures/foliage/forest_02.png" id="1_sxukn"]
-[ext_resource type="Texture2D" uid="uid://6yy00ftx5dut" path="res://textures/foliage/forest_01.png" id="2_h007n"]
+[ext_resource type="Material" uid="uid://dnr2qpjw0i4ha" path="res://materials/forest_outer.material" id="1_485xn"]
 [ext_resource type="PackedScene" uid="uid://drqe4sjady5hu" path="res://scenes/drop_in/tree.tscn" id="2_n6fcw"]
+[ext_resource type="Material" uid="uid://d2xrc0pd2e261" path="res://materials/forest_inner.material" id="2_nyyy3"]
 [ext_resource type="PackedScene" uid="uid://bsm0m7grf1o7h" path="res://scenes/map/entrance_path.tscn" id="3_h1jio"]
 [ext_resource type="ArrayMesh" uid="uid://bpe7l0upvt6nc" path="res://meshes/foliage_mesh.res" id="4_7yird"]
 [ext_resource type="PackedScene" uid="uid://bqrysxnikjgbr" path="res://scenes/map/entrance_terrain.tscn" id="4_ryffb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_keuan"]
-transparency = 1
-albedo_color = Color(0.407843, 0.478431, 0.262745, 1)
-albedo_texture = ExtResource("1_sxukn")
-texture_filter = 2
-
 [sub_resource type="QuadMesh" id="QuadMesh_ckmgu"]
-material = SubResource("StandardMaterial3D_keuan")
+material = ExtResource("1_485xn")
 size = Vector2(30, 6)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3o28"]
-transparency = 1
-albedo_color = Color(0.647059, 0.670588, 0.380392, 1)
-albedo_texture = ExtResource("2_h007n")
-uv1_world_triplanar = true
-texture_filter = 2
-
 [sub_resource type="QuadMesh" id="QuadMesh_uc5j7"]
-material = SubResource("StandardMaterial3D_e3o28")
+material = ExtResource("2_nyyy3")
 size = Vector2(28, 4)
 
 [sub_resource type="MultiMesh" id="MultiMesh_kqpq7"]

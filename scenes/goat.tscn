@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8teq4snnibp4"]
+[gd_scene load_steps=11 format=3 uid="uid://b8teq4snnibp4"]
 
 [ext_resource type="Script" path="res://scripts/goat.gd" id="1_7lb00"]
 [ext_resource type="AudioStream" uid="uid://b7to1yxfgj14w" path="res://sound_effects/goat_short.wav" id="2_41q87"]
 [ext_resource type="AudioStream" uid="uid://bm8frya4dk6r6" path="res://sound_effects/goat_long.wav" id="3_0hro5"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="4_7rdq8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kwpb"]
 albedo_color = Color(0.137255, 0.113725, 0.0666667, 1)
@@ -27,6 +28,9 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("3_0hro5")
 stream_1/weight = 1.0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_0w70d"]
+size = Vector3(0.63501, 1.01295, 1.27179)
+
 [node name="Goat" type="CharacterBody3D" node_paths=PackedStringArray("audio_player")]
 script = ExtResource("1_7lb00")
 audio_player = NodePath("AudioStreamPlayer3D")
@@ -45,4 +49,14 @@ mesh = SubResource("BoxMesh_v15g2")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_fphfu")
-volume_db = -1.0
+volume_db = -3.0
+
+[node name="Interactable" type="Area3D" parent="."]
+script = ExtResource("4_7rdq8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00354004, 0.501457, -0.114777)
+shape = SubResource("BoxShape3D_0w70d")
+
+[connection signal="hovered" from="Interactable" to="." method="_on_interactable_hovered"]
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpc6beoq4536"]
+
+[ext_resource type="Script" path="res://scripts/spectral_statue.gd" id="1_3ov5x"]
+[ext_resource type="Texture2D" uid="uid://dgvsoli4etkgc" path="res://textures/dirt/dirt.png" id="1_laryg"]
+[ext_resource type="Texture2D" uid="uid://cs5wk18km5tyr" path="res://textures/stone/dirt_n.png" id="2_e3o5i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vcjw1"]
+albedo_color = Color(0.556863, 0.494118, 0.423529, 1)
+albedo_texture = ExtResource("1_laryg")
+normal_enabled = true
+normal_texture = ExtResource("2_e3o5i")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hqm1u"]
+material = SubResource("StandardMaterial3D_vcjw1")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_q1qo7"]
+radius = 4.01752
+
+[node name="SpectralStatue" type="Node3D"]
+script = ExtResource("1_3ov5x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_hqm1u")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_q1qo7")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
