@@ -1,7 +1,7 @@
 extends Node3D
 
 
-func _on_interactable_interacted():
+func _on_interactable_interacted(interacter):
 	print("hello")
 
 

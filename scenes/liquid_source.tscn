@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cv2mmivinsuhs"]
+
+[ext_resource type="Script" path="res://scripts/liquid_source.gd" id="1_bg1im"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_wyepm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n4xsy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6567p"]
+
+[node name="LiquidSource" type="Node3D"]
+script = ExtResource("1_bg1im")
+
+[node name="Interactable" type="Area3D" parent="."]
+script = ExtResource("1_wyepm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+shape = SubResource("BoxShape3D_n4xsy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_6567p")
+
+[connection signal="hovered" from="Interactable" to="." method="_on_interactable_hovered"]
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

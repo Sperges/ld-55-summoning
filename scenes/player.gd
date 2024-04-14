@@ -27,8 +27,8 @@ func _unhandled_key_input(event):
 	if Input.is_action_just_pressed("interact"):
 		var collider := raycast.get_collider()
 		if collider and collider is Interactable:
-			collider.interact()
-	if Input.is_action_just_pressed("summon_hand") and not hand:
+			collider.interact(self)
+	if Input.is_action_just_pressed("summon_hand") and not hand and is_on_floor():
 		hand = hand_scene.instantiate()
 		paused = true
 		hand.player = self

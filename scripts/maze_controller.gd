@@ -11,7 +11,7 @@ func _on_interactable_hovered():
 	GameEvents.interact_cue_updated.emit("Alter maze")
 
 
-func _on_interactable_interacted():
+func _on_interactable_interacted(interacter):
 	GameEvents.map_altered.emit(chamber)
 
 

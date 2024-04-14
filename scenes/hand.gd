@@ -9,6 +9,7 @@ class_name Hand
 @export var camera_anchor: Node3D
 @export var player: Player
 @export var raycast: RayCast3D
+@export var has_liquid: bool = false
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -32,7 +33,7 @@ func _unhandled_key_input(event):
 	if Input.is_action_just_pressed("interact"):
 		var collider := raycast.get_collider()
 		if collider and collider is Interactable:
-			collider.interact()
+			collider.interact(self)
 
 
 func _unhandled_input(event):
