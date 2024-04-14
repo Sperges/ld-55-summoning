@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cgjila5r5knku"]
+[gd_scene load_steps=29 format=3 uid="uid://cgjila5r5knku"]
 
 [ext_resource type="PackedScene" uid="uid://do4dyexw3hqmi" path="res://scenes/player.tscn" id="1_yflth"]
 [ext_resource type="PackedScene" uid="uid://b8teq4snnibp4" path="res://scenes/goat.tscn" id="4_io5mu"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dxemhk0ta2in4" path="res://textures/grass/grass.png" id="13_rcecl"]
 [ext_resource type="Texture2D" uid="uid://b35fu53cv0upy" path="res://textures/grass/grass_n.png" id="14_nswhx"]
 [ext_resource type="PackedScene" uid="uid://dis83xmd4e2tf" path="res://scenes/map/tower_path_map.tscn" id="15_trk7c"]
+[ext_resource type="PackedScene" path="res://scenes/liquid_source.tscn" id="16_ewpcq"]
 [ext_resource type="Texture2D" uid="uid://cdcf5qd5f0fap" path="res://textures/mountains.png" id="16_q50tm"]
 
 [sub_resource type="Environment" id="Environment_w6naq"]
@@ -234,3 +235,6 @@ mesh = SubResource("QuadMesh_rss7s")
 [node name="Mountain8" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.312998, 0, -0.949754, 0, 1, 0, 0.949754, 0, 0.312998, 77.0267, 5.20348, 165.978)
 mesh = SubResource("QuadMesh_rss7s")
+
+[node name="LiquidSource" parent="." instance=ExtResource("16_ewpcq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.30879, 25.3645, 156.44)

@@ -11,7 +11,7 @@ func _on_interactable_hovered():
 		GameEvents.interact_cue_updated.emit("Open")
 
 
-func _on_interactable_interacted():
+func _on_interactable_interacted(interacter):
 	if not open:
 		open = true
 		animation_player.play("open")

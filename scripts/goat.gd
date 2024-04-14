@@ -55,5 +55,5 @@ func _on_interactable_hovered():
 	GameEvents.interact_cue_updated.emit("Pet")
 
 
-func _on_interactable_interacted():
+func _on_interactable_interacted(interacter):
 	audio_player.play()

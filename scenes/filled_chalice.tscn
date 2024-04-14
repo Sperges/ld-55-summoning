@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2hpqyk62cefq"]
+
+[ext_resource type="PackedScene" uid="uid://cl7qvfb3me6i6" path="res://scenes/chalice.tscn" id="1_ef2fa"]
+[ext_resource type="Script" path="res://scripts/filled_chalice.gd" id="1_sxlki"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="3_0xnlf"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cus5w"]
+top_radius = 0.37
+bottom_radius = 0.1
+height = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_agcew"]
+
+[node name="FilledChalice" type="Node3D"]
+script = ExtResource("1_sxlki")
+
+[node name="chalice" parent="." instance=ExtResource("1_ef2fa")]
+
+[node name="Liquid" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.674425, 0)
+visible = false
+mesh = SubResource("CylinderMesh_cus5w")
+
+[node name="Interactable" type="Area3D" parent="."]
+script = ExtResource("3_0xnlf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.813042, 0)
+shape = SubResource("SphereShape3D_agcew")
+
+[connection signal="hovered" from="Interactable" to="." method="_on_interactable_hovered"]
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
