@@ -19,11 +19,24 @@ const JUMP_VELOCITY = 4.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var hand = null
 
+
+func die():
+	GameEvents.player_died.emit()
+	paused = true
+	var tween: Tween = create_tween()
+	tween.tween_property(%DeathPanel, "modulate", Color.WHITE, 1)
+	get_tree().create_timer(5.0).timeout.connect(func():
+		get_tree().change_scene_to_file("res://scenes/world.tscn")
+	)
+
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Globals.player = self
 
 
 func _unhandled_key_input(event):
+	print(event)
 	if Input.is_action_just_pressed("interact"):
 		var collider := raycast.get_collider()
 		if collider and collider is Interactable:
@@ -82,10 +95,13 @@ func _physics_process(delta):
 	
 	_handle_audio()
 	_update_ray()
+	
+	if global_position.y < -20:
+		die()
 
 
 func _handle_audio() -> void:
-	if velocity.length() > 0:
+	if velocity.length() > 0 and is_on_floor():
 		if not audio_player.playing:
 			audio_player.play()
 	else:

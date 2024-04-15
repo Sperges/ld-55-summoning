@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://do4dyexw3hqmi"]
+[gd_scene load_steps=16 format=3 uid="uid://do4dyexw3hqmi"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_e1dnn"]
 [ext_resource type="Script" path="res://scripts/interact_label.gd" id="2_7an80"]
 [ext_resource type="FontFile" uid="uid://qqch4uh0hhuc" path="res://fonts/Kurland.woff2" id="2_878u7"]
+[ext_resource type="Script" path="res://scripts/inner_monolog.gd" id="2_v467e"]
 [ext_resource type="AudioStream" uid="uid://bikysubncdpes" path="res://sound_effects/footstep1_grass.wav" id="3_th3q1"]
 [ext_resource type="AudioStream" uid="uid://dl780qaunaew3" path="res://sound_effects/footstep2_grass.wav" id="4_d3bna"]
+[ext_resource type="FontFile" uid="uid://bvhni4c82qs3o" path="res://fonts/OSerif.woff2" id="4_uj2b0"]
 [ext_resource type="Texture2D" uid="uid://bmadrkl03tuy3" path="res://textures/wizard.png" id="5_ky3de"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kfp0j"]
@@ -13,6 +15,9 @@ height = 1.5
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_x6lwj"]
 length = 0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0d5yk"]
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_opq3e"]
 length = 0.001
@@ -81,6 +86,7 @@ shape = SubResource("SeparationRayShape3D_x6lwj")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+fov = 90.0
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -3)
@@ -88,6 +94,27 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="InnerMonologLabel" type="Label" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = -108.0
+offset_right = 97.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_878u7")
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+autowrap_mode = 2
+script = ExtResource("2_v467e")
 
 [node name="InteractLabel" type="Label" parent="HUD"]
 anchors_preset = 8
@@ -108,6 +135,34 @@ theme_override_fonts/font = ExtResource("2_878u7")
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 script = ExtResource("2_7an80")
+
+[node name="DeathPanel" type="Panel" parent="HUD"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0d5yk")
+
+[node name="CenterContainer" type="CenterContainer" parent="HUD/DeathPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HUD/DeathPanel/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.345098, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.223529, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("4_uj2b0")
+theme_override_font_sizes/font_size = 32
+text = "Death"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

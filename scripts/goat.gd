@@ -13,6 +13,7 @@ const bleat_times = [8, 13, 21, 34, 55]
 
 
 func _ready() -> void:
+	Globals.goat = self
 	_create_bleat_timer()
 
 

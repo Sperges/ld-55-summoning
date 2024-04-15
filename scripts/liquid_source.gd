@@ -20,4 +20,6 @@ func _on_interactable_interacted(interacter):
 	print(interacter)
 	if interacter is Hand:
 		interacter.has_liquid = true
+	else:
+		GameEvents.inner_voice_updated.emit("I dare not touch it with mortal hands...")
 	

@@ -16,3 +16,4 @@ func _on_interactable_interacted(interacter):
 		open = true
 		animation_player.play("open")
 		audio_player.play()
+		GameEvents.cinematic_triggered.emit("maze_gate")

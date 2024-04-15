@@ -1,9 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://cgjila5r5knku"]
+[gd_scene load_steps=35 format=3 uid="uid://cgjila5r5knku"]
 
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_ugvbf"]
 [ext_resource type="PackedScene" uid="uid://do4dyexw3hqmi" path="res://scenes/player.tscn" id="1_yflth"]
 [ext_resource type="PackedScene" uid="uid://b8teq4snnibp4" path="res://scenes/goat.tscn" id="4_io5mu"]
 [ext_resource type="PackedScene" uid="uid://bpnwrg5j5shs" path="res://scenes/cinematic_stack.tscn" id="5_tjlgc"]
-[ext_resource type="PackedScene" uid="uid://bthljcn8e4fbg" path="res://scenes/cinematic_trigger.tscn" id="6_nxrup"]
 [ext_resource type="PackedScene" uid="uid://b5xfcnht6qhk" path="res://scenes/map/entrance.tscn" id="7_65471"]
 [ext_resource type="PackedScene" uid="uid://ufyeiehu7fvo" path="res://scenes/map/maze.tscn" id="7_m23dd"]
 [ext_resource type="PackedScene" uid="uid://bwqej3mny4gc8" path="res://scenes/maze_controller.tscn" id="8_eg20c"]
@@ -51,6 +51,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 14, 9)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.387463, 1.91463, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:fov")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [95.0]
+}
 
 [sub_resource type="Animation" id="Animation_eiotk"]
 resource_name = "cinematic_01"
@@ -68,10 +92,222 @@ tracks/0/keys = {
 "values": [Vector3(0, 14, 9), Vector3(0, 14, -2)]
 }
 
+[sub_resource type="Animation" id="Animation_2x3f1"]
+resource_name = "game_start"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 8.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(9.505, 10.03, 5.115), Vector3(13.735, 7.317, -5), Vector3(5, 1.75, -6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.387463, 1.91463, 0), Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4obap"]
+resource_name = "maze_gate"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 8.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.87, 0.44, 5.33), Vector3(1.87, 4.855, 5.33), Vector3(1.87, 21.32, 12.85)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.523599, 3.09621, 0), Vector3(-0.0593412, 3.09621, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:fov")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [95.0, 95.0]
+}
+
+[sub_resource type="Animation" id="Animation_62owe"]
+resource_name = "dungeon"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.261799, 1.9792, 0), Vector3(-0.261799, 1.00705, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-30.012, 13.469, 48.116), Vector3(-30.012, 13.469, 87.871)]
+}
+
+[sub_resource type="Animation" id="Animation_qtx06"]
+resource_name = "church"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.8, 8.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(37.013, 3.794, 82.236), Vector3(37.013, 12.859, 74.981), Vector3(32.378, 21.539, 72.371)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.8, 8.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.523599, 5.28311, 0), Vector3(0.523599, 4.8939, 0), Vector3(-0.188496, 4.76475, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kibti"]
+resource_name = "tower"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 7.2, 11),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.685, 1.804, 108.616), Vector3(1.685, 4.469, 117.726), Vector3(1.685, 14.384, 119.231), Vector3(1.685, 32.264, 120.221)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 11),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.523599, 3.084, 0), Vector3(-0.261799, 3.084, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:fov")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 7.2, 11),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [95.0, 95.0, 75.0]
+}
+
+[sub_resource type="Animation" id="Animation_nepoe"]
+resource_name = "final_summon"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 35.945, 152.325), Vector3(0, 35.945, 115.54)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.785398, -6.28319, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"trigger_blood"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u1hq0"]
 _data = {
 "RESET": SubResource("Animation_o0wgi"),
-"cinematic_01": SubResource("Animation_eiotk")
+"church": SubResource("Animation_qtx06"),
+"cinematic_01": SubResource("Animation_eiotk"),
+"dungeon": SubResource("Animation_62owe"),
+"final_summon": SubResource("Animation_nepoe"),
+"game_start": SubResource("Animation_2x3f1"),
+"maze_gate": SubResource("Animation_4obap"),
+"tower": SubResource("Animation_kibti")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4y6c"]
@@ -108,13 +344,14 @@ material = SubResource("StandardMaterial3D_jutyj")
 size = Vector2(60, 20)
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_ugvbf")
 
 [node name="Player" parent="." instance=ExtResource("1_yflth")]
-transform = Transform3D(-0.298658, 0, 0.95436, 0, 1, 0, -0.95436, 0, -0.298658, 2.12076, 0.45635, 115.024)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 0, -6)
 speed = 10.0
 
 [node name="Goat" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_io5mu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.1515, 0, 63.7823)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05967, 0, 12.9585)
 player = NodePath("../Player")
 min_player_distance = 4.0
 
@@ -124,7 +361,8 @@ animation_player = NodePath("AnimationPlayer")
 camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="CinematicStack"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 14, 9)
+transform = Transform3D(-0.337095, -0.355726, 0.871679, 0, 0.92587, 0.377841, -0.94147, 0.127368, -0.312106, 0, 14, 9)
+fov = 95.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="CinematicStack"]
 transform = Transform3D(-0.393445, 0.650077, -0.650078, 5.41358e-08, 0.707107, 0.707106, 0.919348, 0.278207, -0.278208, 0, 5, 0)
@@ -141,9 +379,6 @@ libraries = {
 "": SubResource("AnimationLibrary_u1hq0")
 }
 
-[node name="CinematicTrigger" parent="." instance=ExtResource("6_nxrup")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3847, 1, 16.1158)
-
 [node name="Entrance" parent="." instance=ExtResource("7_65471")]
 
 [node name="Maze" parent="." instance=ExtResource("7_m23dd")]
@@ -151,18 +386,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, -4.61853e-14, 1, 2.98023e-07, 8.742
 
 [node name="MazeController" parent="." instance=ExtResource("8_eg20c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.0808, -6.55018, 70.8113)
-
-[node name="MazeController2" parent="." instance=ExtResource("8_eg20c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.0314, 5.4734, 70.8911)
-chamber = "chamber_02"
-
-[node name="MazeController3" parent="." instance=ExtResource("8_eg20c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39047, 25.3659, 149.261)
-chamber = "blood"
-
-[node name="MazeController4" parent="." instance=ExtResource("8_eg20c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94578, 25.3412, 148.934)
-chamber = "final_spin"
 
 [node name="EntranceGate" parent="." instance=ExtResource("9_8pc45")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.496855, 19.7841)
@@ -213,28 +436,24 @@ transform = Transform3D(0.836382, 0, 0.548147, 0, 1, 0, -0.548147, 0, 0.836382, 
 mesh = SubResource("QuadMesh_rss7s")
 
 [node name="Mountain3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.548147, 0, 0.836382, 0, 1, 0, -0.836382, 0, -0.548147, -63.1288, 9, 150.514)
+transform = Transform3D(-0.548147, 0, 0.836382, 0, 1, 0, -0.836382, 0, -0.548147, -24.1288, 5.5076, 124.514)
 mesh = SubResource("QuadMesh_rss7s")
 
-[node name="Mountain6" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.548147, 0, 0.836382, 0, 1, 0, -0.836382, 0, -0.548147, -56.1288, 9.86937, 185.514)
+[node name="Mountain9" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.97901, 0, 0.203813, 0, 1, 0, -0.203813, 0, -0.97901, 8.58629, 9.86937, -21.486)
 mesh = SubResource("QuadMesh_rss7s")
 
-[node name="Mountain7" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.548147, 0, 0.836382, 0, 1, 0, -0.836382, 0, -0.548147, -99.1288, 9.86937, 118.514)
+[node name="Mountain10" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.450255, 0, 0.8929, 0, 1, 0, -0.8929, 0, 0.450255, -21.4137, 9.86937, -6.48599)
+mesh = SubResource("QuadMesh_rss7s")
+
+[node name="Mountain11" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.312998, 0, 0.949754, 0, 1, 0, -0.949754, 0, -0.312998, 19.5863, 9.86937, -1.48599)
 mesh = SubResource("QuadMesh_rss7s")
 
 [node name="Mountain4" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.666012, 0, -0.745941, 0, 1, 0, 0.745941, 0, -0.666012, 45.8712, 7, 147.727)
+transform = Transform3D(-0.666012, 0, -0.745941, 0, 1, 0, 0.745941, 0, -0.666012, 34.2078, 7, 112.655)
 mesh = SubResource("QuadMesh_rss7s")
 
-[node name="Mountain5" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.312998, 0, -0.949754, 0, 1, 0, 0.949754, 0, 0.312998, 57.8712, 5.20348, 109.598)
-mesh = SubResource("QuadMesh_rss7s")
-
-[node name="Mountain8" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.312998, 0, -0.949754, 0, 1, 0, 0.949754, 0, 0.312998, 77.0267, 5.20348, 165.978)
-mesh = SubResource("QuadMesh_rss7s")
-
-[node name="LiquidSource" parent="." instance=ExtResource("16_ewpcq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.30879, 25.3645, 156.44)
+[node name="LiquidSource2" parent="." instance=ExtResource("16_ewpcq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07514, 9.53674e-07, 4.20516)

@@ -21,3 +21,7 @@ func _on_cinematic_triggered(label: String) -> void:
 func _on_animation_finished(_anim_name: String) -> void:
 	player.camera.current = true
 	player.paused = false
+
+
+func trigger_blood():
+	GameEvents.map_altered.emit("blood")

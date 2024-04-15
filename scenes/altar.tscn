@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://blg6dcld2h1f2"]
+
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_1ltov"]
+[ext_resource type="Script" path="res://scenes/altar.gd" id="1_b1joq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oxnlh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vn4oc"]
+
+[node name="Altar" type="Node3D"]
+script = ExtResource("1_b1joq")
+
+[node name="Interactable" type="Area3D" parent="."]
+script = ExtResource("1_1ltov")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+shape = SubResource("SphereShape3D_oxnlh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_vn4oc")
+
+[connection signal="hovered" from="Interactable" to="." method="_on_interactable_hovered"]
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

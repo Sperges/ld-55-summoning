@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://te4b3v7e8ino"]
+[gd_scene load_steps=11 format=3 uid="uid://te4b3v7e8ino"]
 
 [ext_resource type="PackedScene" uid="uid://c5btglhdebtm" path="res://scenes/map/dungeon.tscn" id="1_j7pav"]
 [ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="2_xkh0d"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bpc6beoq4536" path="res://scenes/spectral_statue.tscn" id="4_lqrp8"]
 [ext_resource type="PackedScene" uid="uid://cml1qxsuf0ydj" path="res://scenes/board.tscn" id="5_w8ihx"]
 [ext_resource type="PackedScene" uid="uid://dd5fsoyf8dt0n" path="res://scenes/map/column.tscn" id="6_572wn"]
+[ext_resource type="PackedScene" uid="uid://bthljcn8e4fbg" path="res://scenes/cinematic_trigger.tscn" id="7_4yr5n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p3ko0"]
 size = Vector3(36.6913, 1.87964, 6.69373)
@@ -72,3 +73,7 @@ transform = Transform3D(1, 0, 0, 0, 1.45397, 0, 0, 0, 1, 8.75516, 0, -12.4751)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -45.8148, -5.12936, -13.6511)
 material_override = ExtResource("2_xkh0d")
 mesh = SubResource("QuadMesh_85od8")
+
+[node name="CinematicTrigger" parent="." instance=ExtResource("7_4yr5n")]
+transform = Transform3D(6.02011, 0, 0, 0, 3.84631, 0, 0, 0, 3.8419, 0, 7.90636, 12.755)
+animation_name = "dungeon"

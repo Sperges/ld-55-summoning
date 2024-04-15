@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://5lq3aql7nwpn"]
+[gd_scene load_steps=8 format=3 uid="uid://5lq3aql7nwpn"]
 
 [ext_resource type="PackedScene" uid="uid://j04b5cj1dkrb" path="res://scenes/map/tower.tscn" id="1_d7vki"]
 [ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="2_6sviq"]
 [ext_resource type="Material" uid="uid://chungr2w824aa" path="res://materials/wood.material" id="3_x3kke"]
+[ext_resource type="PackedScene" uid="uid://blg6dcld2h1f2" path="res://scenes/altar.tscn" id="4_o5vpq"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jrv4d"]
 top_radius = 30.0
@@ -35,3 +36,6 @@ shape = SubResource("ConcavePolygonShape3D_2urdi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 57.496, 0)
 material_override = ExtResource("3_x3kke")
 mesh = SubResource("CylinderMesh_o0q6b")
+
+[node name="Altar" parent="." instance=ExtResource("4_o5vpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7262, 23.1201, 44.8967)
