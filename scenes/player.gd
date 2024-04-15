@@ -36,6 +36,8 @@ func _ready():
 	Globals.player = self
 
 func _input(event):
+	if event is InputEventMouseButton:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if Input.is_action_just_pressed("missile"):
 		GameEvents.camera_traumaed.emit(0.05)
 		var missile = missile_scene.instantiate()
