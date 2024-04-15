@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cgjila5r5knku"]
+[gd_scene load_steps=29 format=3 uid="uid://cgjila5r5knku"]
 
 [ext_resource type="PackedScene" uid="uid://do4dyexw3hqmi" path="res://scenes/player.tscn" id="1_yflth"]
 [ext_resource type="PackedScene" uid="uid://b8teq4snnibp4" path="res://scenes/goat.tscn" id="4_io5mu"]
@@ -14,9 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://te4b3v7e8ino" path="res://scenes/map/dungeon_chamber.tscn" id="12_iubrf"]
 [ext_resource type="Texture2D" uid="uid://dxemhk0ta2in4" path="res://textures/grass/grass.png" id="13_rcecl"]
 [ext_resource type="Texture2D" uid="uid://b35fu53cv0upy" path="res://textures/grass/grass_n.png" id="14_nswhx"]
-[ext_resource type="PackedScene" uid="uid://c26hbeo33bhfu" path="res://scenes/missile.tscn" id="16_ewnn1"]
-[ext_resource type="PackedScene" uid="uid://cv2mmivinsuhs" path="res://scenes/liquid_source.tscn" id="16_ewpcq"]
-[ext_resource type="PackedScene" uid="uid://j6np3vmeej0u" path="res://scenes/magic_missle.tscn" id="17_8cd2h"]
+[ext_resource type="PackedScene" uid="uid://dis83xmd4e2tf" path="res://scenes/map/tower_path_map.tscn" id="15_trk7c"]
+[ext_resource type="PackedScene" path="res://scenes/liquid_source.tscn" id="16_ewpcq"]
+[ext_resource type="Texture2D" uid="uid://cdcf5qd5f0fap" path="res://textures/mountains.png" id="16_q50tm"]
 
 [sub_resource type="Environment" id="Environment_w6naq"]
 background_mode = 1
@@ -94,10 +94,24 @@ size = Vector2(200, 200)
 material = SubResource("StandardMaterial3D_e4y6c")
 size = Vector2(200, 100)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jutyj"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(1, 0.486275, 0.478431, 1)
+albedo_texture = ExtResource("16_q50tm")
+uv1_scale = Vector3(2, 1, 1)
+texture_filter = 2
+distance_fade_mode = 2
+distance_fade_max_distance = 20.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_rss7s"]
+material = SubResource("StandardMaterial3D_jutyj")
+size = Vector2(60, 20)
+
 [node name="World" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_yflth")]
-transform = Transform3D(-0.298658, 0, 0.95436, 0, 1, 0, -0.95436, 0, -0.298658, 47.9752, 2.84429, 70.634)
+transform = Transform3D(-0.298658, 0, 0.95436, 0, 1, 0, -0.95436, 0, -0.298658, 2.12076, 0.45635, 115.024)
 speed = 10.0
 
 [node name="Goat" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_io5mu")]
@@ -170,23 +184,58 @@ transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819
 transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 66.0638, 14.9619, 70)
 
 [node name="FinalTower" parent="." instance=ExtResource("12_2i54r")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2.28217, 0.364464, 192.068)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2.28217, 0.772028, 188.928)
 
 [node name="GrassFloor" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105, -0.498582, 71)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105, -6.08902, 71)
 mesh = SubResource("PlaneMesh_jb1j4")
 
 [node name="GrassFloor2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -145, -0.498582, 213)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -145, -6.08902, 213)
 mesh = SubResource("PlaneMesh_ugmhk")
 
 [node name="GrassFloor3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -145, -0.498582, -71)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -145, -6.08902, -71)
 mesh = SubResource("PlaneMesh_ugmhk")
 
 [node name="GrassFloor4" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195, -0.498582, 63)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195, -6.08902, 63)
 mesh = SubResource("PlaneMesh_pmxwm")
+
+[node name="TowerPathMap" parent="." instance=ExtResource("15_trk7c")]
+transform = Transform3D(1, 0, 0, 0, 0.998847, -0.048013, 0, 0.048013, 0.998847, 2.0646, -0.64608, 130.821)
+
+[node name="Mountain" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.745941, 0, -0.666012, 0, 1, 0, 0.666012, 0, 0.745941, 46.8712, 9, 28.7271)
+mesh = SubResource("QuadMesh_rss7s")
+
+[node name="Mountain2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.836382, 0, 0.548147, 0, 1, 0, -0.548147, 0, 0.836382, -50.1288, 9, 6.72709)
+mesh = SubResource("QuadMesh_rss7s")
+
+[node name="Mountain3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.548147, 0, 0.836382, 0, 1, 0, -0.836382, 0, -0.548147, -63.1288, 9, 150.514)
+mesh = SubResource("QuadMesh_rss7s")
+
+[node name="Mountain6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.548147, 0, 0.836382, 0, 1, 0, -0.836382, 0, -0.548147, -56.1288, 9.86937, 185.514)
+mesh = SubResource("QuadMesh_rss7s")
+
+[node name="Mountain7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.548147, 0, 0.836382, 0, 1, 0, -0.836382, 0, -0.548147, -99.1288, 9.86937, 118.514)
+mesh = SubResource("QuadMesh_rss7s")
+
+[node name="Mountain4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.666012, 0, -0.745941, 0, 1, 0, 0.745941, 0, -0.666012, 45.8712, 7, 147.727)
+mesh = SubResource("QuadMesh_rss7s")
+
+[node name="Mountain5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.312998, 0, -0.949754, 0, 1, 0, 0.949754, 0, 0.312998, 57.8712, 5.20348, 109.598)
+mesh = SubResource("QuadMesh_rss7s")
+
+[node name="Mountain8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.312998, 0, -0.949754, 0, 1, 0, 0.949754, 0, 0.312998, 77.0267, 5.20348, 165.978)
+mesh = SubResource("QuadMesh_rss7s")
 
 [node name="LiquidSource" parent="." instance=ExtResource("16_ewpcq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.30879, 25.3645, 156.44)

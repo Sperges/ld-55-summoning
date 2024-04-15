@@ -32,6 +32,8 @@ stream_1/weight = 1.0
 size = Vector3(0.63501, 1.01295, 1.27179)
 
 [node name="Goat" type="CharacterBody3D" node_paths=PackedStringArray("audio_player")]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_7lb00")
 audio_player = NodePath("AudioStreamPlayer3D")
 

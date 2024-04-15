@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dis83xmd4e2tf"]
+
+[ext_resource type="PackedScene" uid="uid://daqlmgaywu647" path="res://scenes/map/tower_path.tscn" id="1_f014i"]
+[ext_resource type="Material" uid="uid://d2xrc0pd2e261" path="res://materials/forest_inner.material" id="2_x6eo6"]
+[ext_resource type="Material" uid="uid://dnr2qpjw0i4ha" path="res://materials/forest_outer.material" id="3_u17sy"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_wsmwx"]
+size = Vector2(45, 6.6)
+
+[sub_resource type="QuadMesh" id="QuadMesh_kfnbq"]
+size = Vector2(40, 6.6)
+
+[node name="TowerPathMap" type="Node3D"]
+
+[node name="tower_path" parent="." instance=ExtResource("1_f014i")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 3.7014, 7.63212)
+material_override = ExtResource("2_x6eo6")
+mesh = SubResource("QuadMesh_wsmwx")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 5.20457, 5)
+material_override = ExtResource("3_u17sy")
+mesh = SubResource("QuadMesh_kfnbq")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 5.94104, 7.63212)
+material_override = ExtResource("3_u17sy")
+mesh = SubResource("QuadMesh_kfnbq")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 3.7014, 5)
+material_override = ExtResource("2_x6eo6")
+mesh = SubResource("QuadMesh_wsmwx")
+
+[editable path="tower_path"]
