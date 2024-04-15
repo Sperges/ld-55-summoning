@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwqej3mny4gc8"]
+[gd_scene load_steps=10 format=3 uid="uid://bwqej3mny4gc8"]
 
 [ext_resource type="Script" path="res://scripts/interactable.gd" id="1_7oeky"]
 [ext_resource type="Script" path="res://scripts/maze_controller.gd" id="1_cmffc"]
 [ext_resource type="Material" uid="uid://brbuc1j3buj3v" path="res://materials/maze_controller.material" id="3_ieexa"]
+[ext_resource type="AudioStream" uid="uid://ba5e5crj1erh" path="res://sound_effects/puzzle_complete.mp3" id="5_7eid1"]
 [ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="5_hyeox"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1ytfh"]
@@ -52,6 +53,10 @@ omni_range = 8.0
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 mesh = SubResource("CylinderMesh_tsat7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7eid1")
+bus = &"sfx"
 
 [connection signal="hovered" from="Interactable" to="." method="_on_interactable_hovered"]
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

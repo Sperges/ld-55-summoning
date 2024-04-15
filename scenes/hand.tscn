@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://we786yyj3sin"]
+[gd_scene load_steps=12 format=3 uid="uid://we786yyj3sin"]
 
 [ext_resource type="Script" path="res://scenes/hand.gd" id="1_v6rkn"]
 [ext_resource type="PackedScene" uid="uid://bvejfq1sgu76o" path="res://meshes/hand.glb" id="2_77vuy"]
+[ext_resource type="Script" path="res://scripts/better_camera_3d.gd" id="2_wfvqe"]
 [ext_resource type="Material" uid="uid://pgbvnqa2ke4j" path="res://materials/liquid.material" id="3_mrj85"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4heoe"]
@@ -24,6 +25,70 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Liquid:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hand:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.785398, -3.14159, -1.07778e-07)]
+}
+
+[sub_resource type="Animation" id="Animation_7vlbv"]
+resource_name = "die"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0), Vector3(0, 0.316065, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Liquid:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hand:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-5.96047e-08, -3.14159, -1.008e-09), Vector3(-0.785398, -1.309, -1.07778e-07), Vector3(-0.785398, 0.916298, -5.64634e-08), Vector3(-0.785398, 2.63545, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ohgw4"]
 resource_name = "float"
@@ -41,10 +106,23 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 1, 0), Vector3(0, 1.06266, 0), Vector3(0, 1, 0), Vector3(0, 0.958911, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yev26"]
 _data = {
 "RESET": SubResource("Animation_72oiu"),
+"die": SubResource("Animation_7vlbv"),
 "float": SubResource("Animation_ohgw4")
 }
 
@@ -68,6 +146,7 @@ shape = SubResource("CapsuleShape3D_4heoe")
 [node name="Camera3D" type="Camera3D" parent="CameraAnchor"]
 transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 0, 2, 2)
 fov = 90.0
+script = ExtResource("2_wfvqe")
 
 [node name="RayCast3D" type="RayCast3D" parent="CameraAnchor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
@@ -76,7 +155,7 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="hand" parent="." instance=ExtResource("2_77vuy")]
-transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0, 1, 0)
+transform = Transform3D(-0.25, 4.21217e-07, -4.48162e-07, -1.90526e-08, 0.176777, 0.176777, 6.14743e-07, 0.176777, -0.176777, 0, 1, 0)
 
 [node name="Cube" parent="hand" index="0"]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
@@ -89,7 +168,8 @@ libraries = {
 autoplay = "float"
 
 [node name="Liquid" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.4, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.25, 0)
+visible = false
 mesh = SubResource("SphereMesh_niuyq")
 surface_material_override/0 = ExtResource("3_mrj85")
 

@@ -42,7 +42,7 @@ material_override = ExtResource("2_x6eo6")
 mesh = SubResource("QuadMesh_wsmwx")
 
 [node name="CinematicTrigger" parent="." instance=ExtResource("4_tfv5a")]
-transform = Transform3D(8.39136, 0, 0, 0, 4.40248, 0, 0, 0, 1, 0, 1.47454, -13.2772)
+transform = Transform3D(17.8764, 0, 0, 0, 9.17555, 0, 0, 0, 1.84186, 0, 1.47454, 4.50309)
 animation_name = "tower"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5ew6k4txkncb"]
+
+[ext_resource type="Script" path="res://scripts/better_camera_3d.gd" id="1_pp1cv"]
+
+[node name="BetterCamera3D" type="Camera3D"]
+script = ExtResource("1_pp1cv")

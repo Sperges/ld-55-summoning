@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbwqc4ligr2o0"]
+
+[ext_resource type="FontFile" uid="uid://bvhni4c82qs3o" path="res://fonts/OSerif.woff2" id="1_8eqto"]
+[ext_resource type="Texture2D" uid="uid://d4j4hk1ij2cpr" path="res://textures/summon_circle.png" id="1_djia8"]
+[ext_resource type="Script" path="res://scripts/end.gd" id="1_se1yl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovet7"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="End" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_se1yl")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovet7")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8eqto")
+text = "Summon: Maze"
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_djia8")
+expand_mode = 1
+stretch_mode = 4

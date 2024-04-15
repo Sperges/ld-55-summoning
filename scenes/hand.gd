@@ -15,9 +15,11 @@ class_name Hand
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
+var dead := false
 
 func _set_has_liquid(value: bool):
+	if dead:
+		return
 	has_liquid = value
 	if has_liquid:
 		$Liquid.show()
@@ -28,17 +30,27 @@ func _set_has_liquid(value: bool):
 
 
 func die():
+	if dead:
+		return
+	if Globals.first_hand_death:
+		Globals.first_hand_death = false
+		GameEvents.inner_voice_updated.emit("Best to avoid summoning near those statues...")
+	dead = true
+	print("die")
+	$AnimationPlayer.play("die")
+	await $AnimationPlayer.animation_finished
 	_despawn()
 
 
 func _despawn():
-	print("despawn")
 	player.camera.current = true
 	player.unpause.call_deferred()
 	queue_free()
 
 
 func _unhandled_key_input(event):
+	if dead:
+		return
 	if Input.is_action_just_pressed("summon_hand"):
 		_despawn()
 	if Input.is_action_just_pressed("interact"):
@@ -48,6 +60,8 @@ func _unhandled_key_input(event):
 
 
 func _unhandled_input(event):
+	if dead:
+		return
 	event =  event as InputEventMouseMotion
 	if event:
 		var direction = -event.relative * mouse_sensitivity
@@ -57,6 +71,9 @@ func _unhandled_input(event):
 
 
 func _physics_process(delta):
+	if dead:
+		return
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta

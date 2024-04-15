@@ -25,7 +25,7 @@ func die():
 	GameEvents.player_died.emit()
 	paused = true
 	var tween: Tween = create_tween()
-	tween.tween_property(%DeathPanel, "modulate", Color.WHITE, 1)
+	tween.tween_property(%DeathPanel, "modulate", Color.WHITE, 2)
 	get_tree().create_timer(5.0).timeout.connect(func():
 		get_tree().change_scene_to_file("res://scenes/world.tscn")
 	)
@@ -37,6 +37,7 @@ func _ready():
 
 func _input(event):
 	if Input.is_action_just_pressed("missile"):
+		GameEvents.camera_traumaed.emit(0.05)
 		var missile = missile_scene.instantiate()
 		owner.add_child(missile)
 		missile.global_position = camera.global_position + camera.global_basis * Vector3(.25, 0, -.5)
@@ -75,6 +76,11 @@ func unpause() -> void:
 
 
 func _physics_process(delta):
+	if camera.current:
+		$Sprite3D.hide()
+	else:
+		$Sprite3D.show()
+	
 	if paused:
 		return
 	

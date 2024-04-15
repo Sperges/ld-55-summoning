@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cv2mmivinsuhs"]
+[gd_scene load_steps=9 format=3 uid="uid://c1dq6w41u7l6n"]
 
 [ext_resource type="Script" path="res://scripts/liquid_source.gd" id="1_bg1im"]
 [ext_resource type="Script" path="res://scripts/interactable.gd" id="1_wyepm"]
 [ext_resource type="AudioStream" uid="uid://cctr3td37xhfr" path="res://sound_effects/water_scoop1.wav" id="3_mlq7x"]
 [ext_resource type="AudioStream" uid="uid://5kj314kpeq2f" path="res://sound_effects/water_drip.mp3" id="4_4c80l"]
 [ext_resource type="PackedScene" uid="uid://yvaic7ammjdy" path="res://meshes/well.glb" id="5_qo6r5"]
+[ext_resource type="Material" uid="uid://pgbvnqa2ke4j" path="res://materials/liquid.material" id="6_7jxu4"]
 [ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="6_dx4c7"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0vl8s"]
@@ -31,10 +32,17 @@ bus = &"sfx"
 [node name="Vert" parent="well" index="0"]
 material_override = ExtResource("6_dx4c7")
 
+[node name="Circle" parent="well" index="1"]
+surface_material_override/0 = ExtResource("6_7jxu4")
+
 [node name="Drip" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_4c80l")
 volume_db = 12.0
 unit_size = 12.8
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(0.631373, 0.501961, 1, 1)
 
 [connection signal="hovered" from="Interactable" to="." method="_on_interactable_hovered"]
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

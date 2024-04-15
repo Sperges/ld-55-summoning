@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 @export var min_distance := 10.0
-@export var move_speed := 0.5
+@export var move_speed := 1.0
 
 var dead := false
 

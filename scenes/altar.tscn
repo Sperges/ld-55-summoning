@@ -1,23 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://blg6dcld2h1f2"]
+[gd_scene load_steps=8 format=3 uid="uid://blg6dcld2h1f2"]
 
 [ext_resource type="Script" path="res://scripts/interactable.gd" id="1_1ltov"]
 [ext_resource type="Script" path="res://scenes/altar.gd" id="1_b1joq"]
+[ext_resource type="PackedScene" uid="uid://dbg1sd8e6becu" path="res://meshes/altar.glb" id="3_yewud"]
+[ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="4_3ifrf"]
+[ext_resource type="PackedScene" uid="uid://eospqcc2xt4r" path="res://scenes/inherited/goat.tscn" id="5_sql4r"]
+[ext_resource type="AudioStream" uid="uid://ispnag6qgps1" path="res://sound_effects/goat_deth.wav" id="6_lq1o6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oxnlh"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_vn4oc"]
 
 [node name="Altar" type="Node3D"]
 script = ExtResource("1_b1joq")
 
 [node name="Interactable" type="Area3D" parent="."]
 script = ExtResource("1_1ltov")
+one_time = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.416012, 0)
 shape = SubResource("SphereShape3D_oxnlh")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_vn4oc")
+[node name="altar" parent="." instance=ExtResource("3_yewud")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="Cube" parent="altar" index="0"]
+surface_material_override/0 = ExtResource("4_3ifrf")
+
+[node name="Cube_001" parent="altar" index="1"]
+surface_material_override/0 = ExtResource("4_3ifrf")
+
+[node name="goat" parent="." instance=ExtResource("5_sql4r")]
+transform = Transform3D(0.75, 0, 0, 0, -0.75, 6.55671e-08, 0, -6.55671e-08, -0.75, -0.655572, 1.42147, 0)
+visible = false
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_lq1o6")
+volume_db = -6.0
+bus = &"sfx"
 
 [connection signal="hovered" from="Interactable" to="." method="_on_interactable_hovered"]
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+
+[editable path="altar"]

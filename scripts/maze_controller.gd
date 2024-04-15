@@ -12,6 +12,8 @@ func _on_interactable_hovered():
 
 
 func _on_interactable_interacted(interacter):
+	$AudioStreamPlayer.play()
+	await $AudioStreamPlayer.finished
 	GameEvents.map_altered.emit(chamber)
 
 

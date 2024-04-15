@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://5lq3aql7nwpn"]
+[gd_scene load_steps=12 format=3 uid="uid://5lq3aql7nwpn"]
 
 [ext_resource type="PackedScene" uid="uid://j04b5cj1dkrb" path="res://scenes/map/tower.tscn" id="1_d7vki"]
 [ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="2_6sviq"]
 [ext_resource type="Material" uid="uid://chungr2w824aa" path="res://materials/wood.material" id="3_x3kke"]
 [ext_resource type="PackedScene" uid="uid://blg6dcld2h1f2" path="res://scenes/altar.tscn" id="4_o5vpq"]
+[ext_resource type="Material" uid="uid://bgwsxrxipd2ji" path="res://materials/stone_02.material" id="5_1oim4"]
+[ext_resource type="PackedScene" uid="uid://bpc6beoq4536" path="res://scenes/spectral_statue.tscn" id="6_rbaj2"]
+[ext_resource type="PackedScene" uid="uid://6j3ql0ph4sml" path="res://scenes/spirit.tscn" id="7_nabdu"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jrv4d"]
 top_radius = 30.0
@@ -16,6 +19,11 @@ data = PackedVector3Array(0, 1.5, 30, 2.9405, 1.5, 29.8555, 0, 0.9, 32, 2.9405, 
 [sub_resource type="CylinderMesh" id="CylinderMesh_o0q6b"]
 bottom_radius = 35.0
 height = 35.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3nwgr"]
+top_radius = 5.0
+bottom_radius = 5.0
+height = 0.5
 
 [node name="FinalTower" type="Node3D"]
 
@@ -38,4 +46,60 @@ material_override = ExtResource("3_x3kke")
 mesh = SubResource("CylinderMesh_o0q6b")
 
 [node name="Altar" parent="." instance=ExtResource("4_o5vpq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7262, 23.1201, 44.8967)
+transform = Transform3D(1, 0, 0, 0, 0.989734, -0.142923, 0, 0.142923, 0.989734, -0.217358, 23.4246, 42.9642)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.992872, -0.119184, 0, 0.119184, 0.992872, -0.288124, 23.3566, 41.4347)
+material_override = ExtResource("5_1oim4")
+mesh = SubResource("CylinderMesh_3nwgr")
+
+[node name="SpectralStatue" parent="." instance=ExtResource("6_rbaj2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.548792, 32)
+
+[node name="SpectralStatue2" parent="." instance=ExtResource("6_rbaj2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.548792, 32)
+
+[node name="Spirit" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 5, 0)
+
+[node name="Spirit15" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26, 28)
+
+[node name="Spirit2" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 5, 0)
+
+[node name="Spirit11" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 29, 23)
+
+[node name="Spirit12" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 29, 23)
+
+[node name="Spirit13" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 26, 17)
+
+[node name="Spirit14" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 26, 17)
+
+[node name="Spirit7" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 16)
+
+[node name="Spirit8" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, 16)
+
+[node name="Spirit9" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 22)
+
+[node name="Spirit10" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, 22)
+
+[node name="Spirit3" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 15, 0)
+
+[node name="Spirit4" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 15, 0)
+
+[node name="Spirit5" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.55671e-07, 10, 13)
+
+[node name="Spirit6" parent="." instance=ExtResource("7_nabdu")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.55671e-07, 10, -13)

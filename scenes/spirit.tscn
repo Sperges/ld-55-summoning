@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://6j3ql0ph4sml"]
+[gd_scene load_steps=9 format=3 uid="uid://6j3ql0ph4sml"]
 
 [ext_resource type="Script" path="res://scripts/spirit.gd" id="1_x27rb"]
 [ext_resource type="Texture2D" uid="uid://cigwa6331iicr" path="res://textures/spirit_sheet.png" id="2_uvckr"]
+[ext_resource type="AudioStream" uid="uid://dtt8k455l8ur2" path="res://sound_effects/tentacle.mp3" id="3_7d6ca"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jf7gh"]
 
@@ -87,5 +88,11 @@ shape = SubResource("CapsuleShape3D_5gu4l")
 libraries = {
 "": SubResource("AnimationLibrary_tlxyd")
 }
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_7d6ca")
+autoplay = true
+max_distance = 20.0
+bus = &"sfx"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

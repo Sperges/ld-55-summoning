@@ -18,8 +18,10 @@ func _on_interactable_interacted(interacter):
 	print("interacted")
 	if interacter is Hand and interacter.has_liquid:
 		print("hand")
-		$AudioStreamPlayer.play()
 		$Interactable.one_time = true
 		$Interactable.triggered = true
 		$Liquid.visible = true
+		$AudioStreamPlayer.play()
 		GameEvents.map_altered.emit("chamber_02")
+	else:
+		GameEvents.inner_voice_updated.emit("If only to fill it with that profane liquid.")

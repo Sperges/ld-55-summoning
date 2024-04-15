@@ -11,6 +11,14 @@ const bleat_times = [8, 13, 21, 34, 55]
 @export var turn_speed: float = 2.0
 @export var audio_player: AudioStreamPlayer3D
 
+var goat_phrases := [
+	"Sweet boy.",
+	"Sweet Jeffrey.",
+	"There there...",
+	"You'll be safe with me.",
+	"Don't eat my robes.",
+	"Atta boy."
+]
 
 func _ready() -> void:
 	Globals.goat = self
@@ -58,3 +66,4 @@ func _on_interactable_hovered():
 
 func _on_interactable_interacted(interacter):
 	audio_player.play()
+	GameEvents.inner_voice_updated.emit(goat_phrases.pick_random())

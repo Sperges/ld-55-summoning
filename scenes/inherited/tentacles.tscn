@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://biksphxgend7h"]
+
+[ext_resource type="PackedScene" uid="uid://bb8iliwalghc1" path="res://meshes/tentacles.glb" id="1_nuyg6"]
+[ext_resource type="Material" uid="uid://di718mgswesg7" path="res://materials/tentacle_outer.material" id="2_4w5ve"]
+[ext_resource type="Material" uid="uid://0mbh4uisp8g3" path="res://materials/tentacle_inner.material" id="3_erqxc"]
+[ext_resource type="Material" uid="uid://j2716pkih82m" path="res://materials/tentacle_sucker.material" id="4_0f5mp"]
+
+[node name="tentacles" instance=ExtResource("1_nuyg6")]
+
+[node name="BezierCurve" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_4w5ve")
+surface_material_override/1 = ExtResource("3_erqxc")
+surface_material_override/2 = ExtResource("4_0f5mp")

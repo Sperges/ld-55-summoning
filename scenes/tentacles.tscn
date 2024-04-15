@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://hvwpotdica1k"]
+
+[ext_resource type="PackedScene" uid="uid://biksphxgend7h" path="res://scenes/inherited/tentacles.tscn" id="1_sptbi"]
+
+[node name="Tentacles" type="Node3D"]
+
+[node name="tentacles" parent="." instance=ExtResource("1_sptbi")]
+transform = Transform3D(-15, 0, -1.31134e-06, 0, 15, 0, 1.31134e-06, 0, -15, 0, 0, 0)

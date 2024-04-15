@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://0sfddmw0ym02"]
+[gd_scene load_steps=27 format=3 uid="uid://0sfddmw0ym02"]
 
 [ext_resource type="Material" uid="uid://bgwsxrxipd2ji" path="res://materials/stone_02.material" id="1_xqkpw"]
 [ext_resource type="Material" uid="uid://bxaxkbjde4qwd" path="res://materials/dirt.material" id="1_y4vqt"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/interactable.gd" id="3_pt3od"]
 [ext_resource type="AudioStream" uid="uid://bkgkyl733ac7u" path="res://sound_effects/turning_circle.wav" id="4_d3nim"]
 [ext_resource type="AudioStream" uid="uid://ddhvgtl8x723o" path="res://music/theme_01.mp3" id="6_6sdw0"]
+[ext_resource type="PackedScene" uid="uid://bpc6beoq4536" path="res://scenes/spectral_statue.tscn" id="8_mpo5b"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7nl8t"]
 material = ExtResource("1_y4vqt")
@@ -136,6 +137,8 @@ shape = SubResource("ConcavePolygonShape3D_t8bad")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Door"]
 stream = ExtResource("6_6sdw0")
+volume_db = -6.0
+bus = &"Music"
 
 [node name="Structure" type="Node3D" parent="."]
 
@@ -243,6 +246,12 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 0.376601, -0.369041, 0, 0.218782, 0.635248, 9.3407, 4.82314, -2.59)
 mesh = SubResource("BoxMesh_302f0")
 skeleton = NodePath("../..")
+
+[node name="SpectralStatue" parent="." instance=ExtResource("8_mpo5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.19734, 0.5, 1.98297)
+
+[node name="SpectralStatue2" parent="." instance=ExtResource("8_mpo5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.77454, 0.5, 1.98297)
 
 [connection signal="hovered" from="Door/Interactable" to="Door" method="_on_interactable_hovered"]
 [connection signal="interacted" from="Door/Interactable" to="Door" method="_on_interactable_interacted"]

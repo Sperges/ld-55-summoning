@@ -7,8 +7,10 @@ func _on_interactable_hovered():
 
 
 func _on_interactable_interacted(interacter):
+	$goat.show()
 	Globals.goat.queue_free()
 	GameEvents.inner_voice_updated.emit("El la abismo mi vokas vin. leviĝu kaj faru ĥaoson inter ĉi tiu Tero.")
+	$AudioStreamPlayer3D.play()
 	await get_tree().create_timer(5).timeout
 	GameEvents.map_altered.emit("final_spin")
 	GameEvents.cinematic_triggered.emit("final_summon")

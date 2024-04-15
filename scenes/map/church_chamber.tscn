@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2wooyb27jbhl"]
+[gd_scene load_steps=14 format=3 uid="uid://d2wooyb27jbhl"]
 
 [ext_resource type="PackedScene" uid="uid://c3pj2ty53oxr4" path="res://scenes/map/church.tscn" id="1_ud1ix"]
 [ext_resource type="PackedScene" uid="uid://dccw8cxdq28dd" path="res://scenes/damaged_wall.tscn" id="2_00oua"]
 [ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="3_bqv3a"]
 [ext_resource type="PackedScene" uid="uid://b2hpqyk62cefq" path="res://scenes/filled_chalice.tscn" id="4_ea3fd"]
-[ext_resource type="PackedScene" path="res://scenes/liquid_source.tscn" id="5_s8h4g"]
+[ext_resource type="PackedScene" uid="uid://c1dq6w41u7l6n" path="res://scenes/liquid_source.tscn" id="5_s8h4g"]
 [ext_resource type="PackedScene" uid="uid://bthljcn8e4fbg" path="res://scenes/cinematic_trigger.tscn" id="6_pw68q"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ve0ft"]
+[ext_resource type="PackedScene" uid="uid://xdwx0ctkun08" path="res://scenes/inherited/pew.tscn" id="7_in3uc"]
+[ext_resource type="PackedScene" uid="uid://6j3ql0ph4sml" path="res://scenes/spirit.tscn" id="8_t02rq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ychjg"]
 material = ExtResource("3_bqv3a")
@@ -23,13 +23,13 @@ size = Vector3(5, 3.5, 0.5)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kmh6q"]
 data = PackedVector3Array(-2.5, 1.75, 0.25, 2.5, 1.75, 0.25, -2.5, -1.75, 0.25, 2.5, 1.75, 0.25, 2.5, -1.75, 0.25, -2.5, -1.75, 0.25, 2.5, 1.75, -0.25, -2.5, 1.75, -0.25, 2.5, -1.75, -0.25, -2.5, 1.75, -0.25, -2.5, -1.75, -0.25, 2.5, -1.75, -0.25, 2.5, 1.75, 0.25, 2.5, 1.75, -0.25, 2.5, -1.75, 0.25, 2.5, 1.75, -0.25, 2.5, -1.75, -0.25, 2.5, -1.75, 0.25, -2.5, 1.75, -0.25, -2.5, 1.75, 0.25, -2.5, -1.75, -0.25, -2.5, 1.75, 0.25, -2.5, -1.75, 0.25, -2.5, -1.75, -0.25, 2.5, 1.75, 0.25, -2.5, 1.75, 0.25, 2.5, 1.75, -0.25, -2.5, 1.75, 0.25, -2.5, 1.75, -0.25, 2.5, 1.75, -0.25, -2.5, -1.75, 0.25, 2.5, -1.75, 0.25, -2.5, -1.75, -0.25, 2.5, -1.75, 0.25, 2.5, -1.75, -0.25, -2.5, -1.75, -0.25)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_jy2qa"]
+top_radius = 1.0
+bottom_radius = 2.0
+
 [node name="ChurchChamber" type="Node3D"]
 
 [node name="church" parent="." instance=ExtResource("1_ud1ix")]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
-mesh = SubResource("CapsuleMesh_ve0ft")
 
 [node name="DamagedWall" parent="." instance=ExtResource("2_00oua")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 5.98992, 0.0780858, -16.2026)
@@ -53,7 +53,7 @@ mesh = SubResource("BoxMesh_vg7wa")
 shape = SubResource("ConcavePolygonShape3D_kmh6q")
 
 [node name="FilledChalice" parent="." instance=ExtResource("4_ea3fd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.991746, 1.19209e-07, -10.9765)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356307, -14.6106)
 
 [node name="LiquidSource" parent="." instance=ExtResource("5_s8h4g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.54059, -0.0051868, -18.9224)
@@ -61,3 +61,64 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.54059, -0.0051868, -18.922
 [node name="CinematicTrigger" parent="." instance=ExtResource("6_pw68q")]
 transform = Transform3D(9.76554, 0, 0, 0, 3.76712, 0, 0, 0, 2.41074, 0, 2.00052, 0.771139)
 animation_name = "church"
+
+[node name="pew" parent="." instance=ExtResource("7_in3uc")]
+transform = Transform3D(0.99007, 0, -0.140573, 0, 1, 0, 0.140573, 0, 0.99007, -5, 0, -3)
+
+[node name="pew2" parent="." instance=ExtResource("7_in3uc")]
+transform = Transform3D(0.995671, 0, -0.0929441, 0, 1, 0, 0.0929441, 0, 0.995671, -5, 0, -6.36431)
+
+[node name="pew3" parent="." instance=ExtResource("7_in3uc")]
+transform = Transform3D(0.978111, 0, -0.208082, 0, 1, 0, 0.208082, 0, 0.978111, -5, 0, -10.0445)
+
+[node name="pew4" parent="." instance=ExtResource("7_in3uc")]
+transform = Transform3D(0.999905, 0, 0.0138051, 0, 1, 0, -0.0138051, 0, 0.999905, 5.53511, 0, -3.04151)
+
+[node name="pew5" parent="." instance=ExtResource("7_in3uc")]
+transform = Transform3D(0.998093, 0, 0.0617279, 0, 1, 0, -0.0617279, 0, 0.998093, 5.01624, 0, -6.36557)
+
+[node name="pew6" parent="." instance=ExtResource("7_in3uc")]
+transform = Transform3D(0.997, 0, 0.0773977, 0, 1, 0, -0.0773977, 0, 0.997, 5.15163, 9.53674e-07, -10.3245)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.677587, -14.5819)
+material_override = ExtResource("3_bqv3a")
+mesh = SubResource("CylinderMesh_jy2qa")
+
+[node name="Spirit" parent="." instance=ExtResource("8_t02rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
+
+[node name="Spirit2" parent="." instance=ExtResource("8_t02rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -9)
+
+[node name="Spirit3" parent="." instance=ExtResource("8_t02rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 8, -9)
+
+[node name="Spirit4" parent="." instance=ExtResource("8_t02rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 8, -9)
+
+[node name="Spirit6" parent="." instance=ExtResource("8_t02rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 5, -6)
+
+[node name="Spirit7" parent="." instance=ExtResource("8_t02rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 5, -6)
+
+[node name="Spirit8" parent="." instance=ExtResource("8_t02rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -15)
+
+[node name="Spirit9" parent="." instance=ExtResource("8_t02rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 7, -15)
+
+[node name="Spirit10" parent="." instance=ExtResource("8_t02rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 7, -15)
+
+[node name="Spirit11" parent="." instance=ExtResource("8_t02rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -15)
+
+[node name="Spirit12" parent="." instance=ExtResource("8_t02rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -15)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -15)
+light_energy = 0.223
+omni_range = 2.5

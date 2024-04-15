@@ -20,6 +20,7 @@ script = ExtResource("1_sxlki")
 
 [node name="Liquid" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.674425, 0)
+visible = false
 mesh = SubResource("CylinderMesh_cus5w")
 surface_material_override/0 = ExtResource("3_gkreu")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://te4b3v7e8ino"]
+[gd_scene load_steps=14 format=3 uid="uid://te4b3v7e8ino"]
 
 [ext_resource type="PackedScene" uid="uid://c5btglhdebtm" path="res://scenes/map/dungeon.tscn" id="1_j7pav"]
 [ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="2_xkh0d"]
@@ -7,11 +7,18 @@
 [ext_resource type="PackedScene" uid="uid://cml1qxsuf0ydj" path="res://scenes/board.tscn" id="5_w8ihx"]
 [ext_resource type="PackedScene" uid="uid://dd5fsoyf8dt0n" path="res://scenes/map/column.tscn" id="6_572wn"]
 [ext_resource type="PackedScene" uid="uid://bthljcn8e4fbg" path="res://scenes/cinematic_trigger.tscn" id="7_4yr5n"]
+[ext_resource type="PackedScene" uid="uid://6j3ql0ph4sml" path="res://scenes/spirit.tscn" id="8_2yuu3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p3ko0"]
 size = Vector3(36.6913, 1.87964, 6.69373)
 
 [sub_resource type="BoxMesh" id="BoxMesh_hwx6a"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_rwqse"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ci7b2"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="QuadMesh" id="QuadMesh_85od8"]
 size = Vector2(50, 40)
@@ -35,6 +42,11 @@ transform = Transform3D(6.6854, 0, 0, 0, 2.30385, 0, 0, 0, 1, -4.25029, 0.820701
 mesh = SubResource("BoxMesh_hwx6a")
 surface_material_override/0 = ExtResource("2_xkh0d")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_rwqse")
+
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(13.0854, 0, 0, 0, 12.0878, 0, 0, 0, 1, -0.336559, 7.97485, -27.1851)
 mesh = SubResource("BoxMesh_hwx6a")
@@ -44,6 +56,11 @@ surface_material_override/0 = ExtResource("2_xkh0d")
 transform = Transform3D(6.6854, 0, 0, 0, 2.30385, 0, 0, 0, 1, 4.41543, 0.808134, -27.1851)
 mesh = SubResource("BoxMesh_hwx6a")
 surface_material_override/0 = ExtResource("2_xkh0d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ci7b2")
 
 [node name="broken_wall" parent="." instance=ExtResource("3_jble7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0685518, 4.76837e-07, -27.1991)
@@ -77,3 +94,27 @@ mesh = SubResource("QuadMesh_85od8")
 [node name="CinematicTrigger" parent="." instance=ExtResource("7_4yr5n")]
 transform = Transform3D(6.02011, 0, 0, 0, 3.84631, 0, 0, 0, 3.8419, 0, 7.90636, 12.755)
 animation_name = "dungeon"
+
+[node name="Spirit" parent="." instance=ExtResource("8_2yuu3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="Spirit5" parent="." instance=ExtResource("8_2yuu3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, -3)
+
+[node name="Spirit7" parent="." instance=ExtResource("8_2yuu3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, -12)
+
+[node name="Spirit8" parent="." instance=ExtResource("8_2yuu3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, -12)
+
+[node name="Spirit6" parent="." instance=ExtResource("8_2yuu3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 3, -3)
+
+[node name="Spirit2" parent="." instance=ExtResource("8_2yuu3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -14)
+
+[node name="Spirit3" parent="." instance=ExtResource("8_2yuu3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -22)
+
+[node name="Spirit4" parent="." instance=ExtResource("8_2yuu3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -36.0786)

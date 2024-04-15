@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ufyeiehu7fvo"]
+[gd_scene load_steps=8 format=3 uid="uid://ufyeiehu7fvo"]
 
+[ext_resource type="Script" path="res://scripts/maze.gd" id="1_4yjs1"]
 [ext_resource type="PackedScene" uid="uid://3bwmnn051wb6" path="res://scenes/map/maze_walls.tscn" id="1_pqefm"]
 [ext_resource type="Material" uid="uid://bxaxkbjde4qwd" path="res://materials/dirt.material" id="2_ciq6w"]
 [ext_resource type="Material" uid="uid://d2xrc0pd2e261" path="res://materials/forest_inner.material" id="3_g4vep"]
@@ -16,6 +17,7 @@ points = PackedVector3Array(0, -0.5, -47, -4.60983, -0.5, -46.7792, 0, 0.5, -47,
 size = Vector2(31.43, 6.6)
 
 [node name="Maze" type="Node3D"]
+script = ExtResource("1_4yjs1")
 
 [node name="maze_walls" parent="." instance=ExtResource("1_pqefm")]
 
@@ -68,3 +70,6 @@ surface_material_override/0 = ExtResource("3_g4vep")
 transform = Transform3D(0.858396, 0, -0.512987, 0, 1, 0, 0.512987, 0, 0.858396, 20.9501, 3.26455, -43.7653)
 mesh = SubResource("QuadMesh_edt5q")
 surface_material_override/0 = ExtResource("3_g4vep")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42)
