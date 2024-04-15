@@ -38,13 +38,11 @@ func _ready():
 func _input(event):
 	if Input.is_action_just_pressed("missile"):
 		var missile = missile_scene.instantiate()
-		print(missile)
 		owner.add_child(missile)
 		missile.global_position = camera.global_position + camera.global_basis * Vector3(.25, 0, -.5)
 		missile.direction = -camera.global_basis.z
 
 func _unhandled_key_input(event):
-	print(event)
 	if Input.is_action_just_pressed("interact"):
 		var collider := raycast.get_collider()
 		if collider and collider is Interactable:
