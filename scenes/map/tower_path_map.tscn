@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dis83xmd4e2tf"]
+[gd_scene load_steps=9 format=3 uid="uid://dis83xmd4e2tf"]
 
 [ext_resource type="PackedScene" uid="uid://daqlmgaywu647" path="res://scenes/map/tower_path.tscn" id="1_f014i"]
 [ext_resource type="Material" uid="uid://d2xrc0pd2e261" path="res://materials/forest_inner.material" id="2_x6eo6"]
@@ -10,6 +10,12 @@ size = Vector2(40, 6.6)
 
 [sub_resource type="QuadMesh" id="QuadMesh_kfnbq"]
 size = Vector2(40, 6.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7h1a8"]
+size = Vector3(2, 9, 42)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0gom7"]
+size = Vector3(4, 8, 1)
 
 [node name="TowerPathMap" type="Node3D"]
 
@@ -38,5 +44,23 @@ mesh = SubResource("QuadMesh_wsmwx")
 [node name="CinematicTrigger" parent="." instance=ExtResource("4_tfv5a")]
 transform = Transform3D(8.39136, 0, 0, 0, 4.40248, 0, 0, 0, 1, 0, 1.47454, -13.2772)
 animation_name = "tower"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 4, 7.5)
+shape = SubResource("BoxShape3D_7h1a8")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 4, 6.5)
+shape = SubResource("BoxShape3D_7h1a8")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 3.5, -15)
+shape = SubResource("BoxShape3D_0gom7")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 3.5, -15)
+shape = SubResource("BoxShape3D_0gom7")
 
 [editable path="tower_path"]
