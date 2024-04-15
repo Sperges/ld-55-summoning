@@ -4,6 +4,9 @@
 - PoignantBanana
 - PocketSand
 
+### Meshes:
+- https://sketchfab.com/3d-models/low-poly-goat-de0e999230e24dd5b56853fb538c5b03
+
 ### Textures:
 - https://www.deviantart.com/agf81/art/Stone-Texture-10-Seamless-258478887
 - https://clipart.info/forest-png-transparent-background-3802
