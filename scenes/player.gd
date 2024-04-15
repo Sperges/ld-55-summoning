@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name Player
 
 const hand_scene := preload("res://scenes/hand.tscn")
+const missile_scene := preload("res://scenes/missile.tscn")
 const JUMP_VELOCITY = 4.5
 
 @export var paused := false
@@ -22,6 +23,13 @@ var hand = null
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+func _input(event):
+	if Input.is_action_just_pressed("missile"):
+		var missile = missile_scene.instantiate()
+		print(missile)
+		owner.add_child(missile)
+		missile.global_position = camera.global_position + camera.global_basis * Vector3(.25, 0, -.5)
+		missile.direction = -camera.global_basis.z
 
 func _unhandled_key_input(event):
 	if Input.is_action_just_pressed("interact"):
@@ -38,8 +46,8 @@ func _unhandled_key_input(event):
 		owner.add_child(hand)
 		hand.global_position = global_position
 		hand.global_rotation = global_rotation
-
-
+	
+		
 func _unhandled_input(event):
 	event =  event as InputEventMouseMotion
 	if event and not paused:
