@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dxemhk0ta2in4" path="res://textures/grass/grass.png" id="13_rcecl"]
 [ext_resource type="Texture2D" uid="uid://b35fu53cv0upy" path="res://textures/grass/grass_n.png" id="14_nswhx"]
 [ext_resource type="PackedScene" uid="uid://dis83xmd4e2tf" path="res://scenes/map/tower_path_map.tscn" id="15_trk7c"]
-[ext_resource type="PackedScene" path="res://scenes/liquid_source.tscn" id="16_ewpcq"]
+[ext_resource type="PackedScene" uid="uid://cv2mmivinsuhs" path="res://scenes/liquid_source.tscn" id="16_ewpcq"]
 [ext_resource type="Texture2D" uid="uid://cdcf5qd5f0fap" path="res://textures/mountains.png" id="16_q50tm"]
 
 [sub_resource type="Environment" id="Environment_w6naq"]

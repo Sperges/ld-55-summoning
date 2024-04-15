@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dccw8cxdq28dd" path="res://scenes/damaged_wall.tscn" id="2_00oua"]
 [ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="3_bqv3a"]
 [ext_resource type="PackedScene" uid="uid://b2hpqyk62cefq" path="res://scenes/filled_chalice.tscn" id="4_ea3fd"]
-[ext_resource type="PackedScene" path="res://scenes/liquid_source.tscn" id="5_s8h4g"]
+[ext_resource type="PackedScene" uid="uid://cv2mmivinsuhs" path="res://scenes/liquid_source.tscn" id="5_s8h4g"]
 [ext_resource type="PackedScene" uid="uid://bthljcn8e4fbg" path="res://scenes/cinematic_trigger.tscn" id="6_pw68q"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ve0ft"]

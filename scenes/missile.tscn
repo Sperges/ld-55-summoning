@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c26hbeo33bhfu"]
 
 [ext_resource type="Script" path="res://scripts/missile.gd" id="1_c60hy"]
-[ext_resource type="PackedScene" path="res://scenes/magic_missle.tscn" id="2_gak8j"]
+[ext_resource type="PackedScene" uid="uid://j6np3vmeej0u" path="res://scenes/magic_missle.tscn" id="2_gak8j"]
 [ext_resource type="AudioStream" uid="uid://dy22lvwy14068" path="res://sound_effects/creepy_bell_strike.mp3" id="3_wxfje"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uwgi4"]
