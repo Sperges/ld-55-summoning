@@ -7,6 +7,7 @@ func _physics_process(delta):
 	position += direction * speed * delta
 
 func _ready():
+	$AudioStreamPlayer3D.play()
 	get_tree().create_timer(1).timeout.connect(func():
 		queue_free()
 	)

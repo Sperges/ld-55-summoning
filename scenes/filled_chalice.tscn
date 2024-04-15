@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://brrnjk6uipkcj"]
+[gd_scene load_steps=8 format=3 uid="uid://b2hpqyk62cefq"]
 
 [ext_resource type="PackedScene" path="res://scenes/chalice.tscn" id="1_ef2fa"]
 [ext_resource type="Script" path="res://scripts/filled_chalice.gd" id="1_sxlki"]
 [ext_resource type="Script" path="res://scripts/interactable.gd" id="3_0xnlf"]
 [ext_resource type="Material" uid="uid://pgbvnqa2ke4j" path="res://materials/liquid.material" id="3_gkreu"]
+[ext_resource type="AudioStream" uid="uid://br4b8imlariqm" path="res://sound_effects/water_scoop2.wav" id="4_yue42"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_cus5w"]
 top_radius = 0.37
@@ -28,6 +29,10 @@ script = ExtResource("3_0xnlf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.813042, 0)
 shape = SubResource("SphereShape3D_agcew")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yue42")
+volume_db = 6.0
 
 [connection signal="hovered" from="Interactable" to="." method="_on_interactable_hovered"]
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cml1qxsuf0ydj"]
+[gd_scene load_steps=13 format=3 uid="uid://cml1qxsuf0ydj"]
 
 [ext_resource type="Script" path="res://scripts/board.gd" id="1_ki2wo"]
 [ext_resource type="Texture2D" uid="uid://r05wksrf1seg" path="res://textures/wood/wood.png" id="1_sqxc7"]
 [ext_resource type="Texture2D" uid="uid://d1iv5b3fldu13" path="res://textures/wood/wood_n.png" id="2_1j0ef"]
 [ext_resource type="Script" path="res://scripts/interactable.gd" id="3_lvos6"]
+[ext_resource type="AudioStream" uid="uid://bued3iow0ot3q" path="res://sound_effects/plank_topple.mp3" id="5_esve6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhqs8"]
 albedo_color = Color(0.529412, 0.419608, 0.321569, 1)
@@ -89,6 +90,9 @@ shape = SubResource("BoxShape3D_yk3ve")
 libraries = {
 "": SubResource("AnimationLibrary_v36wx")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Board"]
+stream = ExtResource("5_esve6")
 
 [connection signal="hovered" from="Board/Interactable" to="Board" method="_on_interactable_hovered"]
 [connection signal="interacted" from="Board/Interactable" to="Board" method="_on_interactable_interacted"]

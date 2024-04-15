@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv2mmivinsuhs"]
+[gd_scene load_steps=8 format=3 uid="uid://cv2mmivinsuhs"]
 
 [ext_resource type="Script" path="res://scripts/liquid_source.gd" id="1_bg1im"]
 [ext_resource type="Script" path="res://scripts/interactable.gd" id="1_wyepm"]
+[ext_resource type="AudioStream" uid="uid://cctr3td37xhfr" path="res://sound_effects/water_scoop1.wav" id="3_mlq7x"]
+[ext_resource type="AudioStream" uid="uid://5kj314kpeq2f" path="res://sound_effects/water_drip.mp3" id="4_4c80l"]
+[ext_resource type="PackedScene" uid="uid://yvaic7ammjdy" path="res://meshes/well.glb" id="5_qo6r5"]
+[ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="6_dx4c7"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_n4xsy"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_6567p"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0vl8s"]
+height = 1.03049
+radius = 0.781119
 
 [node name="LiquidSource" type="Node3D"]
 script = ExtResource("1_bg1im")
@@ -14,10 +18,25 @@ script = ExtResource("1_bg1im")
 script = ExtResource("1_wyepm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
-shape = SubResource("BoxShape3D_n4xsy")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.503612, 0)
+shape = SubResource("CylinderShape3D_0vl8s")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_6567p")
+[node name="Scoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mlq7x")
+volume_db = 6.0
+bus = &"sfx"
+
+[node name="well" parent="." instance=ExtResource("5_qo6r5")]
+
+[node name="Vert" parent="well" index="0"]
+material_override = ExtResource("6_dx4c7")
+
+[node name="Drip" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_4c80l")
+volume_db = 12.0
+unit_size = 12.8
 
 [connection signal="hovered" from="Interactable" to="." method="_on_interactable_hovered"]
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+
+[editable path="well"]
