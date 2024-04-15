@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://0sfddmw0ym02"]
+[gd_scene load_steps=26 format=3 uid="uid://0sfddmw0ym02"]
 
 [ext_resource type="Material" uid="uid://bgwsxrxipd2ji" path="res://materials/stone_02.material" id="1_xqkpw"]
 [ext_resource type="Material" uid="uid://bxaxkbjde4qwd" path="res://materials/dirt.material" id="1_y4vqt"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="3_bbtvd"]
 [ext_resource type="Script" path="res://scripts/interactable.gd" id="3_pt3od"]
 [ext_resource type="AudioStream" uid="uid://bkgkyl733ac7u" path="res://sound_effects/turning_circle.wav" id="4_d3nim"]
+[ext_resource type="AudioStream" uid="uid://ddhvgtl8x723o" path="res://music/theme_01.mp3" id="6_6sdw0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7nl8t"]
 material = ExtResource("1_y4vqt")
@@ -126,11 +127,15 @@ shape = SubResource("BoxShape3D_7mian")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Door"]
 stream = ExtResource("4_d3nim")
+bus = &"sfx"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Door"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_t8bad")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Door"]
+stream = ExtResource("6_6sdw0")
 
 [node name="Structure" type="Node3D" parent="."]
 

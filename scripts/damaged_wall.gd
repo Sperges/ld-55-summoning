@@ -11,3 +11,4 @@ func damage():
 	$CollisionShape3D.queue_free()
 	$Decal.visible = false
 	$broken_wall.visible = true
+	$AudioStreamPlayer.play(.5)

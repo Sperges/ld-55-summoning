@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://c3pj2ty53oxr4" path="res://scenes/map/church.tscn" id="1_ud1ix"]
 [ext_resource type="PackedScene" uid="uid://dccw8cxdq28dd" path="res://scenes/damaged_wall.tscn" id="2_00oua"]
 [ext_resource type="Material" uid="uid://moyjmhlfjaav" path="res://materials/stone.material" id="3_bqv3a"]
-[ext_resource type="PackedScene" path="res://scenes/filled_chalice.tscn" id="4_ea3fd"]
-[ext_resource type="PackedScene" path="res://scenes/liquid_source.tscn" id="5_s8h4g"]
+[ext_resource type="PackedScene" uid="uid://b2hpqyk62cefq" path="res://scenes/filled_chalice.tscn" id="4_ea3fd"]
+[ext_resource type="PackedScene" uid="uid://cv2mmivinsuhs" path="res://scenes/liquid_source.tscn" id="5_s8h4g"]
 [ext_resource type="PackedScene" uid="uid://bthljcn8e4fbg" path="res://scenes/cinematic_trigger.tscn" id="6_pw68q"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ve0ft"]
@@ -56,10 +56,7 @@ shape = SubResource("ConcavePolygonShape3D_kmh6q")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.991746, 1.19209e-07, -10.9765)
 
 [node name="LiquidSource" parent="." instance=ExtResource("5_s8h4g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.54059, 1.39576, -18.9224)
-
-[node name="LiquidSource2" parent="." instance=ExtResource("5_s8h4g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.54059, 1.39576, -13.9224)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.54059, -0.0051868, -18.9224)
 
 [node name="CinematicTrigger" parent="." instance=ExtResource("6_pw68q")]
 transform = Transform3D(9.76554, 0, 0, 0, 3.76712, 0, 0, 0, 2.41074, 0, 2.00052, 0.771139)

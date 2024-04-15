@@ -6,4 +6,5 @@ func _on_interactable_hovered():
 
 
 func _on_interactable_interacted(interacter):
+	$AudioStreamPlayer.play()
 	$AnimationPlayer.play("topple")

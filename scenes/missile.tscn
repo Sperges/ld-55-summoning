@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://c26hbeo33bhfu"]
+[gd_scene load_steps=6 format=3 uid="uid://c26hbeo33bhfu"]
 
 [ext_resource type="Script" path="res://scripts/missile.gd" id="1_c60hy"]
 [ext_resource type="PackedScene" uid="uid://j6np3vmeej0u" path="res://scenes/magic_missle.tscn" id="2_gak8j"]
+[ext_resource type="AudioStream" uid="uid://dy22lvwy14068" path="res://sound_effects/creepy_bell_strike.mp3" id="3_wxfje"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uwgi4"]
 radius = 0.130309
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ufgq6"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_wxfje")
+stream_0/weight = 1.0
 
 [node name="Missle" type="Node3D"]
 script = ExtResource("1_c60hy")
@@ -21,5 +28,8 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_uwgi4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ufgq6")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

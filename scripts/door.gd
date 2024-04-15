@@ -13,6 +13,7 @@ func _on_interactable_hovered():
 
 func _on_interactable_interacted(interacter):
 	if not open:
+		$AudioStreamPlayer.play()
 		open = true
 		animation_player.play("open")
 		audio_player.play()
