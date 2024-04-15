@@ -17,4 +17,5 @@ func _on_area_3d_body_entered(body):
 	print(body)
 	if body.has_method("damage"):
 		print("break")
+		queue_free()
 		body.damage()

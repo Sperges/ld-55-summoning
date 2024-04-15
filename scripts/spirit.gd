@@ -1,11 +1,16 @@
-extends AnimatableBody3D
+extends CharacterBody3D
 
 
 @export var min_distance := 10.0
 @export var move_speed := 0.5
 
+var dead := false
+
 
 func _physics_process(delta):
+	if dead:
+		return
+	
 	if not Globals.player:
 		return
 	
@@ -16,7 +21,8 @@ func _physics_process(delta):
 
 
 func damage():
-	queue_free()
+	dead = true
+	$AnimationPlayer.play("die")
 
 
 func _on_area_3d_body_entered(body):

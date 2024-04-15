@@ -9,11 +9,22 @@ class_name Hand
 @export var camera_anchor: Node3D
 @export var player: Player
 @export var raycast: RayCast3D
-@export var has_liquid: bool = false
+@export var has_liquid: bool = false: set = _set_has_liquid
+@export var hand_mesh: MeshInstance3D
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+
+func _set_has_liquid(value: bool):
+	has_liquid = value
+	if has_liquid:
+		$Liquid.show()
+		hand_mesh.rotation_degrees.z = 180
+	else:
+		$Liquid.hide()
+		hand_mesh.rotation_degrees.z = 0
 
 
 func die():

@@ -23,9 +23,11 @@ shape = SubResource("ConcavePolygonShape3D_p18dv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("BoxMesh_kaqqm")
 
-[node name="Decal" type="Decal" parent="."]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 1.00186, 0.582044)
-texture_albedo = ExtResource("4_h4tg1")
+[node name="Decal" type="Sprite3D" parent="."]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82138e-15, -8.74228e-08, -1, 0, 1.00186, 0.503911)
+modulate = Color(0.580392, 0.580392, 0.580392, 1)
+pixel_size = 0.015
+texture = ExtResource("4_h4tg1")
 
 [node name="broken_wall" parent="." instance=ExtResource("4_bex0g")]
 visible = false
