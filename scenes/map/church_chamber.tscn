@@ -32,10 +32,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
 mesh = SubResource("CapsuleMesh_ve0ft")
 
 [node name="DamagedWall" parent="." instance=ExtResource("2_00oua")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 5.98992, 0, -16.2571)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 5.98992, 0.0780858, -16.2026)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.24735, 1, -16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.24735, 1.12095, -16)
 mesh = SubResource("BoxMesh_ychjg")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
@@ -44,7 +44,7 @@ mesh = SubResource("BoxMesh_ychjg")
 shape = SubResource("ConcavePolygonShape3D_l8qwd")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24735, 3.74458, -16.1964)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24735, 3.83596, -16.1964)
 mesh = SubResource("BoxMesh_vg7wa")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
